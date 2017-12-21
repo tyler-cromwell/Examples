@@ -2,8 +2,6 @@
 
 import random
 
-from common import Node
-
 
 def binary_search(sl, data):
     start = 0
@@ -24,7 +22,7 @@ def binary_search(sl, data):
 
 
 if __name__ == '__main__':
-    s = 10000
+    s = 20
     l = [random.randint(0, s) for i in range(s)]
 
     print(l)
