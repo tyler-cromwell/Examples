@@ -10,10 +10,11 @@ class ListNode(Node.DoubleNode):
 
 
 class List:
-    __slots__ = ('head', 'tail', 'size')
+    __slots__ = ('head', 'tail', 'size', 'node_type')
 
-    def __init__(self, data=None):
-        self.head = ListNode(data)
+    def __init__(self, data=None, node_type=ListNode):
+        self.node_type = node_type
+        self.head = self.node_type(data)
         self.tail = self.head
         #self.current = self.tail
 
@@ -31,15 +32,27 @@ class List:
     def __len__(self):
         return self.size
 
-    #def __contains__(self, data):
-
-    def __getitem__(self, index):
-        if index >= self.size:
-            return None
+    def __contains__(self, data):
+        if self.size == 0:
+            return self.head.data is data
 
         node = self.head
 
-        for i in range(index+1):
+        for i in range(self.size):
+            if node.data == data:
+                return True
+
+            node = node.next
+
+        return False
+
+    def __getitem__(self, index):
+        if index >= self.size:
+            raise IndexError('list index out of range')
+
+        node = self.head
+
+        for i in range(index):
             node = node.next
 
         return node.data
@@ -66,7 +79,7 @@ class List:
         if self.tail.data is None:
             self.tail.data = data
         else:
-            node = ListNode(data)
+            node = self.node_type(data)
             node.previous = self.tail
             self.tail.next = node
             self.tail = self.tail.next
@@ -80,7 +93,7 @@ class List:
             if self.head.next is not None:
                 self.head = self.head.next
             else:
-                self.head = ListNode(None)
+                self.head = self.node_type(None)
             self.size -= 1
             return data
 
