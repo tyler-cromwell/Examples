@@ -96,6 +96,12 @@ class List:
                 self.head = self.node_type(None)
             self.size -= 1
             return data
+        elif index == len(self)-1:
+            data = self.tail.data
+            self.tail = self.tail.previous
+            self.tail.next = None
+            self.size -= 1
+            return data
 
         node = self.head
 
@@ -137,7 +143,9 @@ if __name__ == '__main__':
     d.reverse()
     print(len(d), '|', d)
 
-    for e in l:
-        d.remove(0)
+    d.remove(len(d)-1)
+    print(len(d), '|', d, '*')
 
-    print(len(d), '|', d)
+    for i in range(len(d)):
+        d.remove(0)
+        print(len(d), '|', d)
