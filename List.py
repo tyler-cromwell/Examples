@@ -69,7 +69,7 @@ class List:
         node.data = data
 
     def __delitem__(self, index):
-        pass
+        return self.remove(index)
 
     # __iter__
     # __next__ ?
