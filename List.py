@@ -14,28 +14,26 @@ class List:
 
     def __init__(self, data=None, node_type=ListNode):
         self.node_type = node_type
-        self.head = self.node_type(data)
-        self.tail = self.head
-        #self.current = self.tail
 
         if data is None:
+            self.head = None
+            self.tail = None
             self.size = 0
         else:
+            self.head = self.node_type(data)
+            self.tail = self.head
             self.size = 1
 
     def __str__(self):
-        if self.head.data is not None:
-            return '{}'.format(self.head)
-        else:
+        if self.head is None:
             return 'None'
+        else:
+            return '{}'.format(self.head)
 
     def __len__(self):
         return self.size
 
     def __contains__(self, data):
-        if self.size == 0:
-            return self.head.data is data
-
         node = self.head
 
         for i in range(self.size):
@@ -47,7 +45,7 @@ class List:
         return False
 
     def __getitem__(self, index):
-        if index >= self.size:
+        if index >= self.size or index < 0:
             raise IndexError('list index out of range')
 
         node = self.head
@@ -58,8 +56,8 @@ class List:
         return node.data
 
     def __setitem__(self, index, data):
-        if index >= self.size:
-            return
+        if index >= self.size or index < 0:
+            raise IndexError('list index out of range')
 
         node = self.head
 
@@ -75,19 +73,45 @@ class List:
     # __next__ ?
 
     def add(self, data):
-        # Maybe combine with __setitem__
-        if self.tail.data is None:
-            self.tail.data = data
+        if self.head is None:
+            self.head = self.node_type(data)
+            self.tail = self.head
+            self.size += 1
         else:
-            node = self.node_type(data)
+            self.insert(self.size-1, data)
+
+    def insert(self, index, data):
+        node = self.node_type(data)
+
+        if index == self.size-1:
             node.previous = self.tail
+            node.next = None
             self.tail.next = node
-            self.tail = self.tail.next
-        self.size += 1
+            self.tail = node
+            self.size += 1
+        elif index == 0:
+            node.next = self.head
+            node.previous = None
+            self.head.previous = node
+            self.head = node
+            self.size += 1
+        elif 0 < index and index < self.size-1:
+            current = self.head
+
+            for i in range(index):
+                current = current.next
+
+            node.previous = current
+            node.next = current.next
+            current.next.previous = node
+            current.next = node
+            self.size += 1
+        else:
+            raise IndexError('list index out of range')
 
     def remove(self, index):
-        if index >= self.size:
-            return None
+        if index >= self.size or index < 0:
+            raise IndexError('list index out of range')
         elif index == 0:
             data = self.head.data
             if self.head.next is not None:
@@ -135,6 +159,8 @@ class List:
 if __name__ == '__main__':
     l = [5, 2, 3, 1, 7, 9, 8]
     d = List()
+
+    print(len(l), '|', l)
 
     for e in l:
         d.add(e)
