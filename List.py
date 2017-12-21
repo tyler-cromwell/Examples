@@ -6,7 +6,7 @@ class ListNode(Node.DoubleNode):
     __slots__ = ('previous', 'data', 'next')
 
     def __str__(self):
-        return '{} -> {}'.format(self.data, self.next)
+        return '{} <--> {}'.format(self.data, self.next)
 
 
 class List:
