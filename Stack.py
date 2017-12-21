@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from common import Node
+import List
 
 
 class StackNode(Node.DoubleNode):
@@ -11,53 +12,25 @@ class StackNode(Node.DoubleNode):
 
 
 class Stack:
-    __slots__ = ('base', 'tail', 'size')
+    __slots__ = ('list')
 
     def __init__(self, data=None):
-        self.base = StackNode(data)
-        self.tail = self.base
-
-        if data is None:
-            self.size = 0
-        else:
-            self.size = 1
+        self.list = List.List(data=data, node_type=StackNode)
 
     def __str__(self):
-        if self.base.data is not None:
-            return '{}'.format(self.base)
-        else:
-            return 'None'
+        return str(self.list)
 
     def __len__(self):
-        return self.size
+        return len(self.list)
 
     def peek(self):
-        return self.tail.data
+        return self.list[len(self)-1]
 
     def push(self, data):
-        if self.base.data is None:
-            self.base.data = data
-        else:
-            node = StackNode(data)
-            node.previous = self.tail
-            self.tail.next = node
-            self.tail = self.tail.next
-        self.size += 1
+        self.list.add(data)
 
     def pop(self):
-        if self.tail.previous is not None and self.tail.data is not None:
-            data = self.tail.data
-            self.tail.previous.next = self.tail.next
-            self.tail = self.tail.previous
-            self.size -= 1
-            return data
-        elif self.tail.previous is None and self.tail.data is not None:
-            data = self.tail.data
-            self.tail.data = None
-            self.size -= 1
-            return data
-        else:
-            return None
+        return self.list.remove(len(self)-1)
 
 
 if __name__ == '__main__':
@@ -68,5 +41,5 @@ if __name__ == '__main__':
         s.push(e)
         print('Size:', len(s), '| Top:', s.peek(), '| Stack:', s)
 
-    for e in l:
+    for e in range(len(s)):
         print('Size:', len(s), '| Removed:', s.pop(), '| Stack:', s)
