@@ -2,6 +2,7 @@
 
 from common import Node
 
+
 class StackNode(Node.DoubleNode):
     __slots__ = ('previous', 'data', 'next')
 
