@@ -62,12 +62,16 @@ def depth_first_search(root, traversal=Traversal.INORDER):
 
 
 if __name__ == '__main__':
+    print('====================')
+    print('Binary Search')
+    print('====================')
+
     s = 10
     l = [random.randint(0, s) for i in range(s)]
 
-    print(l)
+    print('Original:', l)
     l.sort()
-    print(l)
+    print('Sorted:', l)
 
     for e in l:
         print('Searching for', e, ':', binary_search(l, e))
@@ -84,6 +88,18 @@ if __name__ == '__main__':
     )
 
     print()
+    print('====================')
+    print('Depth First Search')
+    print('====================')
+
+    print('Tree:')
+    print(root.data)
+    print('+', root.left.data)
+    print('+--', root.left.left.data)
+    print('+--', root.left.right.data)
+    print('+', root.right.data)
+    print('+--', root.right.left.data)
+    print('+--', root.right.right.data)
 
     visited = depth_first_search(root, Traversal.PREORDER)
     print('Preorder:', visited)
