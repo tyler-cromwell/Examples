@@ -31,3 +31,32 @@ class DoubleNode:
     def setnext(self, node):
         self.next = node
         self.next.previous = self
+
+
+class TreeNode:
+    __slots__ = ('data', 'neighbors')
+
+    def __init__(self, data, neighbors=[]):
+        self.data = data
+        self.neighbors = neighbors
+
+    def __str__(self):
+        return '{}'.format(self.data)
+
+
+class BinaryNode:
+    __slots__ = ('left', 'data', 'right')
+
+    def __init__(self, data, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        return '{}'.format(self.data)
+
+    def setleft(self, node):
+        self.left = node
+
+    def setright(self, node):
+        self.right = node
