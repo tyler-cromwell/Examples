@@ -55,6 +55,16 @@ class BinaryNode:
     def __str__(self):
         return '{}'.format(self.data)
 
+    def children(self):
+        if self.left is not None and self.right is not None:
+            return [self.left, self.right]
+        elif self.left is not None and self.right is None:
+            return [self.left]
+        elif self.left is None and self.right is not None:
+            return [self.right]
+        else:
+            return []
+
     def setleft(self, node):
         self.left = node
 
