@@ -83,7 +83,11 @@ class List:
     def insert(self, index, data):
         node = self.node_type(data)
 
-        if index == self.size-1:
+        if self.size == 0:
+            self.head = node
+            self.tail = self.head
+            self.size += 1
+        elif index == self.size-1:
             node.previous = self.tail
             node.next = None
             self.tail.next = node
@@ -175,3 +179,12 @@ if __name__ == '__main__':
     for i in range(len(d)):
         d.remove(0)
         print(len(d), '|', d)
+
+    print('-------------')
+    d = List(5)
+    print(d)
+    d.remove(0)
+    print(d)
+    d.add(2)
+    d.add(3)
+    print(d)
