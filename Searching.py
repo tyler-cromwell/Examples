@@ -4,6 +4,7 @@ import enum
 import random
 
 from common import Node
+import Queue
 
 
 class Traversal(enum.Enum):
@@ -41,6 +42,7 @@ def depth_first_search(root, traversal=Traversal.INORDER):
  
         if root.right is not None:
             visited += depth_first_search(root.right, traversal)
+
     elif traversal == Traversal.POSTORDER:
         if root.left is not None:
             visited += depth_first_search(root.left, traversal)
@@ -49,6 +51,7 @@ def depth_first_search(root, traversal=Traversal.INORDER):
             visited += depth_first_search(root.right, traversal)
 
         visited.append(root.data)
+
     else:
         if root.left is not None:
             visited += depth_first_search(root.left, traversal)
@@ -57,6 +60,22 @@ def depth_first_search(root, traversal=Traversal.INORDER):
 
         if root.right is not None:
             visited += depth_first_search(root.right, traversal)
+
+    return visited
+
+
+def breadth_first_search(root):
+    queue = Queue.Queue(root)
+    visited = []
+
+    while len(queue) > 0:
+        node = queue.dequeue()
+
+        if node not in visited:
+            visited.append(node.data)
+
+            for child in node.children():
+                queue.enqueue(child)
 
     return visited
 
@@ -107,3 +126,20 @@ if __name__ == '__main__':
     print('Postorder:', visited)
     visited = depth_first_search(root)
     print('Inorder:', visited)
+
+    print()
+    print('====================')
+    print('Breadth First Search')
+    print('====================')
+
+    print('Tree:')
+    print(root.data)
+    print('+', root.left.data)
+    print('+--', root.left.left.data)
+    print('+--', root.left.right.data)
+    print('+', root.right.data)
+    print('+--', root.right.left.data)
+    print('+--', root.right.right.data)
+
+    visited = breadth_first_search(root)
+    print(visited)
