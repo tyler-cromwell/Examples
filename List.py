@@ -143,7 +143,13 @@ class List:
         self.size -= 1
         return data
 
-    #def clone(self):
+    def clone(self):
+        newlist = List(node_type=self.node_type)
+
+        for i in range(self.size):
+            newlist.add(self[i])
+
+        return newlist
 
     def reverse(self):
         head = self.head
@@ -170,6 +176,7 @@ if __name__ == '__main__':
         d.add(e)
 
     print(len(d), '|', d)
+    print(len(d), '|', d.clone(), 'c')
     d.reverse()
     print(len(d), '|', d)
 
