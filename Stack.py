@@ -32,6 +32,15 @@ class Stack:
     def pop(self):
         return self.list.remove(len(self)-1)
 
+    def clone(self):
+        l = self.list.clone()
+        stack = Stack()
+
+        for i in range(len(l)):
+            stack.push(l[i])
+
+        return stack
+
 
 if __name__ == '__main__':
     l = [5, 2, 3, 1, 7, 9]
@@ -40,6 +49,9 @@ if __name__ == '__main__':
     for e in l:
         s.push(e)
         print('Size:', len(s), '| Top:', s.peek(), '| Stack:', s)
+
+    print(s)
+    print(s.clone())
 
     for e in range(len(s)):
         print('Size:', len(s), '| Removed:', s.pop(), '| Stack:', s)
