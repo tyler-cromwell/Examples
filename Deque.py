@@ -27,6 +27,15 @@ class Deque(Queue.Queue):
     def dequeueback(self):
         return self.list.remove(len(self)-1)
 
+    def clone(self):
+        l = self.list.clone()
+        deque = Deque()
+
+        for i in range(len(l)):
+            deque.enqueue(l[i])
+
+        return deque
+
 
 if __name__ == '__main__':
     d = Deque(7)
@@ -37,3 +46,4 @@ if __name__ == '__main__':
     d.enqueuefront(3)
     print('Size:', len(d))
     print(d)
+    print(d.clone())
