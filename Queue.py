@@ -41,6 +41,15 @@ class Queue:
     def dequeue(self):
         return self.list.remove(0)
 
+    def clone(self):
+        l = self.list.clone()
+        queue = Queue()
+
+        for i in range(len(l)):
+            queue.enqueue(l[i])
+
+        return queue
+
 
 if __name__ == '__main__':
     q = Queue(4)
@@ -52,6 +61,7 @@ if __name__ == '__main__':
     q.enqueue(5)
     q.enqueue(1)
     print(q)
+    print(q.clone())
     del q[0]
     q.dequeue()
     print(q)
