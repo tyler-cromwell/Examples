@@ -1,5 +1,8 @@
 *.swp
 
+processes/arithmetic
+processes/main
+processes/pipeline
 sockets/client
 sockets/server
 
