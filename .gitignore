@@ -1,3 +1,6 @@
 *.swp
 
+sockets/client
+sockets/server
+
 __pycache__/
