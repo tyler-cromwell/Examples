@@ -1,2 +1,2 @@
 # Examples
-Examples of fundamental data structures and algorithms.
+Examples of fundamental algorithms, data structures, and systems programming concepts.

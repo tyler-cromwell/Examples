@@ -2,9 +2,11 @@
 
 import enum
 import random
+import sys
+sys.path.insert(0, '../')
 
-from common import Node
-import Queue
+from _common import Node
+from data_structures import Queue
 
 
 class Traversal(enum.Enum):

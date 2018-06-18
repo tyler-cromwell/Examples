@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
-from common import Node
-import List
+import sys
+sys.path.insert(0, '../')
+
+from _common import Node
+from data_structures import List
 
 
 class QueueNode(Node.DoubleNode):

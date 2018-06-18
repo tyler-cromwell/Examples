@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
-from common import Node
-import List
-import Queue
+import sys
+sys.path.insert(0, '../')
+
+from _common import Node
+from data_structures import List
+from data_structures import Queue
 
 
 class DequeNode(Node.DoubleNode):
