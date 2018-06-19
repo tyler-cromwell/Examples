@@ -8,24 +8,30 @@
 
 
 pid_t execute(char *args[], int fdin, int fdout) {
+    // Clone process
     pid_t prog = fork();
 
     switch (prog) {
+        // Child process
         case 0:
             if (fdin != -1) {
+                // Redirect STDIN to the given file
                 close(STDIN_FILENO);
                 dup2(fdin, STDIN_FILENO);
                 close(fdin);
             }
 
             if (fdout != STDOUT_FILENO) {
+                // Redirect STDOUT to the given file
                 close(STDOUT_FILENO);
                 dup2(fdout, STDOUT_FILENO);
                 close(fdout);
             }
 
+            // Load and execute child program
             execvp(args[0], args);
             return -1;
+        // Parent process
         default:
             close(fdout);
             return prog;
@@ -34,8 +40,7 @@ pid_t execute(char *args[], int fdin, int fdout) {
 
 
 int main(int argc, char *argv[]) {
-//    cat /dev/urandom| tr -dc '0-9a-zA-Z!@#$%^&*_+-'|head -c 8
-    //char *args1[] = {"dd", "bs=1K", "count=1", "if=/dev/urandom", NULL};
+    // Prepare arguments for each child
     char *args1[] = {"cat", "string.txt", NULL};
     char *args2[] = {"sed", "s/e/z/g", NULL};
     char *args3[] = {"sed", "s/o/z/g", NULL};
@@ -48,16 +53,15 @@ int main(int argc, char *argv[]) {
     int p4[2];  pipe(p4);
 
     // Start programs
-
     pid_t prog1 = execute(args1, -1, p1[1]);
     pid_t prog2 = execute(args2, p1[0], p2[1]);
     pid_t prog3 = execute(args3, p2[0], p3[1]);
     pid_t prog4 = execute(args4, p3[0], STDOUT_FILENO);
 
+    // Wait for each stage of the pipeline (i.e. wait for each child)
     waitpid(prog1, NULL, 0);
     waitpid(prog2, NULL, 0);
     waitpid(prog3, NULL, 0);
     waitpid(prog4, NULL, 0);
-
     return EXIT_SUCCESS;
 }
