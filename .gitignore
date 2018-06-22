@@ -7,3 +7,5 @@ sockets/client
 sockets/server
 
 __pycache__/
+debug/
+release/
