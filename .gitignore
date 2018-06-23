@@ -1,11 +1,19 @@
 *.swp
 
+.cache.mk
+Module.symvers
+modules.order
+
+.linuxmod*
+linuxmod*
+
 processes/arithmetic
 processes/main
 processes/pipeline
 sockets/client
 sockets/server
 
+.tmp_versions/
 __pycache__/
 debug/
 release/
