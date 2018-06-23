@@ -1,7 +1,7 @@
 # Linux
 Example of a basic [Linux][linux] [kernel module][module].
 
-To build and install, execute `[make]` and insert the module object file (`.ko`):
+To build and install, execute [`make`][make] and insert the module object file (`.ko`):
 ```
 $ make
 $ sudo insmod linuxmod.ko
