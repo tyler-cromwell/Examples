@@ -1,11 +1,13 @@
 # Multithreading
-This is an example of how to regulate the number of active [threads][thread] based on the number of [CPU cores][multicore].
+This is an example of how to regulate the number of active [threads][thread] based on the number of online [CPU cores][multicore].
 The program will ensure that a thread is spawned for every core.
 When one finishes, it spawns another until all of a specified number of threads have executed.
 It makes use of [mutexes][mutex] and [condition variables][condvar] (also called Monitors).
 The mutex is primarily used to prevent thread completion during spawns and joins.
 The condition variable is used to determine when the main thread must join on a finished thread.
 Because multiple threads may finish before the main thread can join them all, an array is used to implement a simple [queue] of all threads that finished execution.
+The size of the queue is equal to the number of cores since it is impossible for more threads to finish than there are cores to execute them.
+
 [Pthreads][pthreads] are the threading implementation used.
 
 
