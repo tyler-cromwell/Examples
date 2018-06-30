@@ -8,7 +8,7 @@ The condition variable is used to determine when the main thread must join on a 
 Because multiple threads may finish at the same time, an array is used to implement a simple [queue] of all threads that finished execution.
 The size of the queue is equal to the number of cores since it is impossible for more threads to finish than there are cores to execute them.
 
-[Pthreads][pthreads] are the threading implementation used.
+[Pthreads][pthreads] is the threading API used.
 
 
 [condvar]: https://en.wikipedia.org/wiki/Monitor_(synchronization)
