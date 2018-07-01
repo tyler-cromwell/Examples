@@ -24,7 +24,7 @@ RELOBJS = $(addprefix $(RELDIR)/, $(OBJS))
 RELCFLAGS = -O3
 
 
-.PHONY: all clean debug prep release
+.PHONY: all clean debug release
 
 
 # Default build
