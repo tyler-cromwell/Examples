@@ -1,5 +1,5 @@
 # Dynamic Programming
-The included are examples of how to apply [Dynamic Programming][dynamprog] to solve a computationally complex problem.
+The included files are examples of how to apply [Dynamic Programming][dynamprog] to solve a computationally complex problem.
 In this example, the problem is computing the Nth [Fibonacci Number][fibo].
 This task has a [Time Complexity][time] of `O(2^n)` where `n` is the Nth number.
 What makes this problem so complex is that in order to compute the Nth fibonacci number, the previous two numbers must first be computed.
