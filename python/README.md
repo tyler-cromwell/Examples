@@ -14,7 +14,7 @@ The Debugging process is as follows:
 2. Install module with/to the debug interpreter.
     1. `sudo ~/Sources/cpython/python setup.py install --record files.txt`
 3. Run valgrind on the debug interpreter.
-    1. *BE SURE TO RECORD THE BASE LEAK VALUES BEFORE RUNNING YOUR MODULE*
+    1. **BE SURE TO RECORD THE BASE LEAK VALUES BEFORE RUNNING YOUR MODULE**
     2. Run module and observe any changes in leak values.
 4. (Optional) Uninstall module.
     1. `cat files.txt | xargs sudo rm -rf`
