@@ -35,7 +35,8 @@ Hello, world!
 - Distutils
 - C compiler
 
-## Short notes on Python memory management
+## Short notes
+- The module initialization function **must** be named `init` followed by the name for the `import` statement.
 - Object allocation/deallocation works using [reference counting][refcnt]. Objects with a reference count of `0` will be deallocated.
 - "New" references that are returned to the interpreter will later be cleaned up by it.
 - "Borrowed" references should be accompanied by calls to `Py_INCREF` and `Py_DECREF`.
