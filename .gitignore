@@ -10,10 +10,12 @@ linuxmod*
 processes/arithmetic
 processes/main
 processes/pipeline
+python/files.txt
 sockets/client
 sockets/server
 
 .tmp_versions/
 __pycache__/
+build/
 debug/
 release/
