@@ -49,13 +49,20 @@ static PyObject * c_printf(PyObject *self, PyObject *args) {
 }
 
 
+static PyObject * c_version(PyObject *self, PyObject *args) {
+    return Py_BuildValue("s", FULL_VERSION);
+}
+
+
 static PyMethodDef CMethods[] = {
     {"add", c_add, METH_VARARGS, "Returns the sum of given oprands."},
     {"printf", c_printf, METH_VARARGS, "Formatted print."},
+    {"version", c_version, METH_NOARGS, "Returns module version."},
     {NULL, NULL, 0, NULL}
 };
 
 
 PyMODINIT_FUNC initc(void)  {
-    (void) Py_InitModule("c", CMethods);
+    PyObject *module = Py_InitModule("c", CMethods);
+    PyModule_AddStringConstant(module, "__version__", FULL_VERSION);
 }
