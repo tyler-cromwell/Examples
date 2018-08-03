@@ -5,9 +5,9 @@ LDFLAGS = -lpthread
 
 
 # Files
-SRCS = sync.c
+SRCS = parallelize.c
 OBJS = $(SRCS:.c=.o)
-EXE  = sync
+EXE  = parallelize
 
 
 # Debug build settings

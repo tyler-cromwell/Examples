@@ -94,7 +94,7 @@ void freelistdir(char **list, size_t amount) {
 
 int main(int argc, char *argv[]) {
     if (argc == 1) {
-        fprintf(stderr, "Need at least one argument.");
+        fprintf(stderr, "Need at least one argument.\n");
         return EXIT_FAILURE;
     }
 
