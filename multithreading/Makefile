@@ -21,7 +21,7 @@ DBGCFLAGS = -ggdb -O0 -DDEBUG
 RELDIR = release
 RELEXE = $(RELDIR)/$(EXE)
 RELOBJS = $(addprefix $(RELDIR)/, $(OBJS))
-RELCFLAGS = -O3
+RELCFLAGS = -O2
 
 
 .PHONY: all clean debug release
