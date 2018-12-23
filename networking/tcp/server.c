@@ -1,4 +1,3 @@
-#include <assert.h>
 #include <errno.h>
 #include <netinet/in.h>
 #include <stdio.h>
@@ -18,35 +17,62 @@ int main(void) {
     int enable = 1;
     struct sockaddr_in address;
     socklen_t size = sizeof(struct sockaddr_in);
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    int fdsocket = socket(AF_INET, SOCK_STREAM, 0);
+#ifdef DEBUG
+    debug_check_error("socket", __FILE__, __LINE__);
+#else
     check_error("socket");
+#endif
 
-    setsockopt(sock, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &enable, sizeof(enable));
+
+    setsockopt(fdsocket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &enable, sizeof(enable));
+#ifdef DEBUG
+    debug_check_error("setsockopt", __FILE__, __LINE__);
+#else
     check_error("setsockopt");
+#endif
+
 
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(HOST_PORT);
-    check_error("htons");
-
-    bind(sock, (void*) &address, size);
+    bind(fdsocket, (void*) &address, size);
+#ifdef DEBUG
+    debug_check_error("bind", __FILE__, __LINE__);
+#else
     check_error("bind");
+#endif
 
-    listen(sock, BACKLOG);
+
+    listen(fdsocket, BACKLOG);
+#ifdef DEBUG
+    debug_check_error("listen", __FILE__, __LINE__);
+#else
     check_error("listen");
+#endif
+
 
     while (1) {
-        int connection = accept(sock, (void*) &address, (socklen_t*) &size);
+        int fdconnection = accept(fdsocket, (void*) &address, (socklen_t*) &size);
+#ifdef DEBUG
+        debug_check_error("accept", __FILE__, __LINE__);
+#else
         check_error("accept");
-        printf("# Accepted connection %d\n", connection);
+#endif
+        printf("# Accepted connection %d\n", fdconnection);
+
 
         while (1) {
             char buffer[PACSIZ] = {0};
 
             for (size_t i = 0; i < PACSIZ; i++) {
                 char c = EOS;
-                recv(connection, &c, sizeof(char), 0);
+                recv(fdconnection, &c, sizeof(char), 0);
+#ifdef DEBUG
+                debug_check_error("recv", __FILE__, __LINE__);
+#else
                 check_error("recv");
+#endif
                 if (c == '\0') {break;}
                 buffer[i] = c;
             }
@@ -54,8 +80,12 @@ int main(void) {
             if (!strncmp(buffer, "disconnect", 10) || buffer[0] == EOS) {
                 break;
             } else if (!strncmp(buffer, "shutdown", 8) || buffer[0] == EOS) {
-                close(sock);
+                close(fdsocket);
+#ifdef DEBUG
+                debug_check_error("close", __FILE__, __LINE__);
+#else
                 check_error("close");
+#endif
                 printf("# Connections terminated, goodbye\n");
                 return EXIT_SUCCESS;
             } else if (strlen(buffer) > 0 && buffer[0] != EOS) {
@@ -63,9 +93,13 @@ int main(void) {
             }
         }
 
-        close(connection);
+        close(fdconnection);
+#ifdef DEBUG
+        debug_check_error("close", __FILE__, __LINE__);
+#else
         check_error("close");
-        printf("# Terminated connection %d\n", connection);
+#endif
+        printf("# Terminated connection %d\n", fdconnection);
     }
 
     return EXIT_FAILURE;
