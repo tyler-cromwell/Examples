@@ -1,27 +1,35 @@
 # Compiler flags
 CC      = gcc
 CFLAGS  = -Wall -Wextra -std=c11
-LDFLAGS = -lpthread
+AS      = nasm
+AFLAGS  = -f elf64
+LDFLAGS =
 
 
 # Files
-SRCS = parallelize.c
-OBJS = $(SRCS:.c=.o)
-EXE  = parallelize
+CSRCS = lib.c
+COBJS = $(CSRCS:.c=.o)
+ASRCS = main.asm
+AOBJS = $(ASRCS:.asm=.o)
+EXE   = main
 
 
 # Debug build settings
-DBGDIR = debug
-DBGEXE = $(DBGDIR)/$(EXE)
-DBGOBJS = $(addprefix $(DBGDIR)/, $(OBJS))
+DBGDIR    = debug
+DBGEXE    = $(DBGDIR)/$(EXE)
+DBGCOBJS  = $(addprefix $(DBGDIR)/, $(COBJS))
 DBGCFLAGS = -ggdb -O0 -DDEBUG
+DBGAOBJS  = $(addprefix $(DBGDIR)/, $(AOBJS))
+DBGAFLAGS = -g -F dwarf
 
 
 # Release build settings
-RELDIR = release
-RELEXE = $(RELDIR)/$(EXE)
-RELOBJS = $(addprefix $(RELDIR)/, $(OBJS))
+RELDIR    = release
+RELEXE    = $(RELDIR)/$(EXE)
+RELCOBJS  = $(addprefix $(RELDIR)/, $(COBJS))
 RELCFLAGS = -O2
+RELAOBJS  = $(addprefix $(RELDIR)/, $(AOBJS))
+RELAFLAGS =
 
 
 .PHONY: all clean debug release
@@ -34,21 +42,27 @@ all: debug release
 # Debug rules
 debug: prep_debug $(DBGEXE)
 
-$(DBGEXE): $(DBGOBJS)
+$(DBGEXE): $(DBGCOBJS) $(DBGAOBJS)
 	$(CC) -o $(DBGEXE) $^ $(LDFLAGS)
 
 $(DBGDIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) $(DBGCFLAGS) -o $@ $<
 
+$(DBGDIR)/%.o: %.asm
+	$(AS) -o $@ $< $(AFLAGS) $(DBGAFLAGS)
+
 
 # Release rules
 release: prep_release $(RELEXE)
 
-$(RELEXE): $(RELOBJS)
+$(RELEXE): $(RELCOBJS) $(RELAOBJS)
 	$(CC) -o $(RELEXE) $^ $(LDFLAGS)
 
 $(RELDIR)/%.o: %.c
 	$(CC) -c $(CFLAGS) $(RELCFLAGS) -o $@ $<
+
+$(RELDIR)/%.o: %.asm
+	$(AS) -o $@ $< $(AFLAGS) $(RELAFLAGS)
 
 
 # Other rules

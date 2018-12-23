@@ -1,13 +1,13 @@
 # Compiler flags
 CC      = gcc
 CFLAGS  = -Wall -Wextra -std=c11
-LDFLAGS = -lpthread
+LDFLAGS =
 
 
 # Files
-SRCS = parallelize.c
+SRCS = listdir.c
 OBJS = $(SRCS:.c=.o)
-EXE  = parallelize
+EXE  = listdir
 
 
 # Debug build settings

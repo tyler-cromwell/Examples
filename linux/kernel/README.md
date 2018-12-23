@@ -1,4 +1,4 @@
-# Linux
+# Linux (kernel)
 Example of a basic [Linux][linux] [kernel module][module].
 
 To build and install, execute [`make`][make] and insert the module object file (`.ko`):
