@@ -1,7 +1,6 @@
 #define _GNU_SOURCE
 
 #include <arpa/inet.h>
-#include <errno.h>
 #include <netinet/in.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,10 +13,12 @@
 
 
 int main(void) {
-    errno = 0;
     char buffer[PACSIZ] = {0};
     struct sockaddr_in remote;
     socklen_t size = sizeof(struct sockaddr_in);
+
+
+    // Create socket (IPv4, UDP)
     int fdsocket = socket(AF_INET, SOCK_DGRAM, 0);
 #ifdef DEBUG
     debug_check_error("socket", __FILE__, __LINE__);
@@ -26,9 +27,10 @@ int main(void) {
 #endif
 
 
-    remote.sin_family = AF_INET;
+    // Bind
+    remote.sin_family = AF_INET;            // IPv4
     remote.sin_port = htons(HOST_PORT);
-    remote.sin_addr.s_addr = INADDR_ANY;
+    remote.sin_addr.s_addr = INADDR_ANY;    // Accept from any interface on the machine
     inet_pton(AF_INET, HOST_IP, &remote.sin_addr);
 #ifdef DEBUG
     debug_check_error("inet_pton", __FILE__, __LINE__);
@@ -37,6 +39,7 @@ int main(void) {
 #endif
 
 
+    // Send a message
     sendto(fdsocket, "Hello, world!", 14, 0, &remote, size);
 #ifdef DEBUG
     debug_check_error("sendto", __FILE__, __LINE__);
@@ -45,6 +48,7 @@ int main(void) {
 #endif
 
 
+    // Wait for and send user input
     while ((strncmp(buffer, "disconnect", 10) || strlen(buffer) != 10) &&
            (strncmp(buffer, "shutdown", 8) || strlen(buffer) != 8)) {
         memset(buffer, '\0', PACSIZ);
@@ -75,6 +79,7 @@ int main(void) {
     }
 
 
+    // Terminate
     close(fdsocket);
 #ifdef DEBUG
     debug_check_error("close", __FILE__, __LINE__);
