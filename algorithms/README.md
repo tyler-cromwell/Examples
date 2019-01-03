@@ -10,6 +10,7 @@ Sort.py:
 - [Bubble Sort][bsr]
 - [Selection Sort][ss]
 - [Insertion Sort][is]
+- [Merge Sort][ms]
 
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
 [bs]: https://en.wikipedia.org/wiki/Binary_search_algorithm
@@ -17,3 +18,4 @@ Sort.py:
 [dfs]: https://en.wikipedia.org/wiki/Depth-first_search
 [is]: https://en.wikipedia.org/wiki/Insertion_sort
 [ss]: https://en.wikipedia.org/wiki/Selection_sort
+[ms]: https://en.wikipedia.org/wiki/Merge_sort
