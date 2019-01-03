@@ -49,9 +49,38 @@ def insertion_sort(data):
     return array
 
 
+def merge_sort(A):
+    def merge(L, R):
+        B = []
+
+        while len(L) != 0 and len(R) != 0:
+            if L[0] < R[0]:
+                B.append(L[0])
+                L.remove(L[0])
+            else:
+                B.append(R[0])
+                R.remove(R[0])
+
+        if len(L) == 0:
+            B.extend(R)
+        else:
+            B.extend(L)
+
+        return B
+
+    if len(A) <= 1:
+        return A
+    else:
+        mid = len(A) // 2
+        L = merge_sort(A[:mid])
+        R = merge_sort(A[mid:])
+        return merge(L, R)
+
+
 if __name__ == '__main__':
     l = [5, 2, 3, 6, 1, 0, 4]
-    print(l)
-    print(bubble_sort(l))
-    print(selection_sort(l))
-    print(insertion_sort(l))
+    print('Unordered:\t', l)
+    print('Bubble Sort:\t', bubble_sort(l))
+    print('Selection Sort:\t', selection_sort(l))
+    print('Insertion Sort:\t', insertion_sort(l))
+    print('Merge Sort:\t', merge_sort(l))
