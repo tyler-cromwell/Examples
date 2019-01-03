@@ -17,6 +17,9 @@ int main(void) {
     int enable = 1;
     struct sockaddr_in address;
     socklen_t size = sizeof(struct sockaddr_in);
+
+
+    // Create socket (IPv4, TCP)
     int fdsocket = socket(AF_INET, SOCK_STREAM, 0);
 #ifdef DEBUG
     debug_check_error("socket", __FILE__, __LINE__);
@@ -25,6 +28,7 @@ int main(void) {
 #endif
 
 
+    // Force (re)use of the IP address and port number.
     setsockopt(fdsocket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &enable, sizeof(enable));
 #ifdef DEBUG
     debug_check_error("setsockopt", __FILE__, __LINE__);
@@ -33,8 +37,9 @@ int main(void) {
 #endif
 
 
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
+    // Bind
+    address.sin_family = AF_INET;           // IPv4
+    address.sin_addr.s_addr = INADDR_ANY;   // Accept connections from any interface on the machine
     address.sin_port = htons(HOST_PORT);
     bind(fdsocket, (void*) &address, size);
 #ifdef DEBUG
@@ -44,6 +49,7 @@ int main(void) {
 #endif
 
 
+    // Listen for connections
     listen(fdsocket, BACKLOG);
 #ifdef DEBUG
     debug_check_error("listen", __FILE__, __LINE__);
@@ -53,6 +59,7 @@ int main(void) {
 
 
     while (1) {
+        // Wait for a request from a client
         int fdconnection = accept(fdsocket, (void*) &address, (socklen_t*) &size);
 #ifdef DEBUG
         debug_check_error("accept", __FILE__, __LINE__);
@@ -62,6 +69,7 @@ int main(void) {
         printf("# Accepted connection %d\n", fdconnection);
 
 
+        // Handle connection
         while (1) {
             char buffer[PACSIZ] = {0};
 
@@ -93,6 +101,8 @@ int main(void) {
             }
         }
 
+
+        // Terminate connection
         close(fdconnection);
 #ifdef DEBUG
         debug_check_error("close", __FILE__, __LINE__);

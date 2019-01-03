@@ -15,6 +15,9 @@ int main(void) {
     errno = 0;
     char buffer[PACSIZ] = {0};
     struct sockaddr_in address = {0};
+
+
+    // Create socket (IPv4, TCP)
     int fdsocket = socket(AF_INET, SOCK_STREAM, 0);
 #ifdef DEBUG
     debug_check_error("socket", __FILE__, __LINE__);
@@ -23,7 +26,8 @@ int main(void) {
 #endif
 
 
-    address.sin_family = AF_INET;
+    // Specify server address
+    address.sin_family = AF_INET;           // IPv4
     address.sin_port = htons(HOST_PORT);
     inet_pton(AF_INET, HOST_IP, &address.sin_addr);
 #ifdef DEBUG
@@ -33,6 +37,7 @@ int main(void) {
 #endif
 
 
+    // Open a connection to the server
     connect(fdsocket, (void*) &address, sizeof(struct sockaddr_in));
 #ifdef DEBUG
     debug_check_error2("connect", "Server is down", __FILE__, __LINE__);
@@ -41,6 +46,7 @@ int main(void) {
 #endif
 
 
+    // Send a message
     send(fdsocket, "Hello, world!", 14, 0);
 #ifdef DEBUG
     debug_check_error("send", __FILE__, __LINE__);
@@ -49,6 +55,7 @@ int main(void) {
 #endif
 
 
+    // Wait for and send user input
     while ((strncmp(buffer, "disconnect", 10) || strlen(buffer) != 10) &&
            (strncmp(buffer, "shutdown", 8) || strlen(buffer) != 8)) {
         memset(buffer, '\0', PACSIZ);
@@ -79,6 +86,7 @@ int main(void) {
     }
 
 
+    // Terminate connection
     close(fdsocket);
 #ifdef DEBUG
     debug_check_error("close", __FILE__, __LINE__);
