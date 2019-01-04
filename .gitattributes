@@ -1,0 +1,3 @@
+database/mysql/create_user.sql linguist-language=MySQL
+networking/tcp/common.h linguist-language=C
+networking/udp/common.h linguist-language=C
