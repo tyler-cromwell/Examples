@@ -1,8 +1,9 @@
 #include <errno.h>
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <pthread.h>
+#include <unistd.h>
 
 
 typedef struct job job_t;
@@ -10,9 +11,9 @@ typedef struct session session_t;
 
 
 typedef enum {
-    DEAD = 0,
     ALIVE = 1,
-    JOINED = 2
+    UNJOINED = 2,
+    JOINED = 3
 } state_t;
 
 
@@ -40,7 +41,7 @@ void * job_test(void *param) {
 pthread_mutex_lock(&job->session->mutex);
     printf("[%lu]: I'm dead now\n", job->id);
     job->session->unjoined++;
-    job->state = DEAD;
+    job->state = UNJOINED;
 pthread_mutex_unlock(&job->session->mutex);
     pthread_cond_signal(&job->session->cond);   // Tell manager I'm done
     return NULL;
@@ -53,24 +54,27 @@ void parallelize(session_t *session) {
     pthread_cond_init(&session->cond, NULL);
     pthread_t *threads = calloc(session->njobs, sizeof(pthread_t));
     int *rets = calloc(session->njobs, sizeof(int));
+    size_t index = 0;
+    size_t cores = sysconf(_SC_NPROCESSORS_ONLN);
+    size_t end = (cores < session->njobs) ? cores : session->njobs;
 
-    // Spawn all threads
-    for (size_t t = 0; t < session->njobs; t++) {
-        session->jobs[t].session = session;
-        session->jobs[t].id = t;
-        session->jobs[t].state = ALIVE;
-        rets[t] = pthread_create(&threads[t], NULL, session->jobs[t].action, &session->jobs[t]);
+    // Spawn some threads
+    for (; index < end; index++) {
+        session->jobs[index].session = session;
+        session->jobs[index].id = index;
+        session->jobs[index].state = ALIVE;
+        errno = rets[index] = pthread_create(&threads[index], NULL, session->jobs[index].action, &session->jobs[index]);
 
-        if (rets[t]) {
-            fprintf(stderr, "pthread_create (%d): %s\n", rets[t], strerror(errno));
+        if (rets[index]) {
+            fprintf(stderr, "pthread_create (%d): %s\n", rets[index], strerror(errno));
             exit(EXIT_FAILURE);
         }
     }
 
-    session->alive = session->njobs;
+    session->alive = end;
     session->unjoined = 0;
 
-    // Wait for threads to die
+    // Wait for all threads to die
     while (session->alive > 0) {
 pthread_mutex_lock(&session->mutex);
 
@@ -78,9 +82,9 @@ pthread_mutex_lock(&session->mutex);
             pthread_cond_wait(&session->cond, &session->mutex);
         }
 
-        for (size_t i = 0; i < session->njobs; i++) {
-            if (session->jobs[i].state == DEAD) {
-                rets[i] = pthread_join(threads[i], NULL);
+        for (size_t i = 0; i < end; i++) {
+            if (session->jobs[i].state == UNJOINED) {
+                errno = rets[i] = pthread_join(threads[i], NULL);
 
                 if (rets[i]) {
                     fprintf(stderr, "pthread_join (%d): %s\n", rets[i], strerror(errno));
@@ -89,6 +93,23 @@ pthread_mutex_lock(&session->mutex);
                     session->jobs[i].state = JOINED;
                     session->unjoined--;
                     session->alive--;
+                }
+
+                // Spawn another thread until all jobs are done
+                if (index < session->njobs) {
+                    session->jobs[index].session = session;
+                    session->jobs[index].id = index;
+                    session->jobs[index].state = ALIVE;
+                    errno = rets[index] = pthread_create(&threads[index], NULL, session->jobs[index].action, &session->jobs[index]);
+
+                    if (rets[index]) {
+                        fprintf(stderr, "pthread_create (%d): %s\n", rets[index], strerror(errno));
+                        exit(EXIT_FAILURE);
+                    } else {
+                        index++;
+                        end++;
+                        session->alive++;
+                    }
                 }
             }
         }
