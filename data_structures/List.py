@@ -5,6 +5,7 @@ sys.path.insert(0, '../')
 
 from _common import Node
 
+
 class ListNode(Node.DoubleNode):
     __slots__ = ('previous', 'data', 'next')
 
@@ -13,10 +14,12 @@ class ListNode(Node.DoubleNode):
 
 
 class List:
-    __slots__ = ('head', 'tail', 'size', 'node_type')
+    __slots__ = ('head', 'tail', 'size', 'iters', 'node_type')
+
 
     def __init__(self, data=None, node_type=ListNode):
         self.node_type = node_type
+        self.iters = 0
 
         if data is None:
             self.head = None
@@ -27,14 +30,17 @@ class List:
             self.tail = self.head
             self.size = 1
 
+
     def __str__(self):
         if self.head is None:
             return 'None'
         else:
             return '{}'.format(self.head)
 
+
     def __len__(self):
         return self.size
+
 
     def __contains__(self, data):
         node = self.head
@@ -47,6 +53,7 @@ class List:
 
         return False
 
+
     def __getitem__(self, index):
         if index >= self.size or index < 0:
             raise IndexError('list index out of range')
@@ -57,6 +64,7 @@ class List:
             node = node.next
 
         return node.data
+
 
     def __setitem__(self, index, data):
         if index >= self.size or index < 0:
@@ -69,11 +77,24 @@ class List:
 
         node.data = data
 
+
     def __delitem__(self, index):
         return self.remove(index)
 
-    # __iter__
-    # __next__ ?
+
+    def __iter__(self):
+        return self
+
+
+    def __next__(self):
+        if self.iters < self.size:
+            i = self.iters
+            self.iters += 1
+            return self[i]
+        else:
+            self.iters = 0
+            raise StopIteration
+
 
     def add(self, data):
         if self.head is None:
@@ -82,6 +103,7 @@ class List:
             self.size += 1
         else:
             self.insert(self.size-1, data)
+
 
     def insert(self, index, data):
         node = self.node_type(data)
@@ -116,6 +138,7 @@ class List:
         else:
             raise IndexError('list index out of range')
 
+
     def remove(self, index):
         if index >= self.size or index < 0:
             raise IndexError('list index out of range')
@@ -146,6 +169,7 @@ class List:
         self.size -= 1
         return data
 
+
     def clone(self):
         newlist = List(node_type=self.node_type)
 
@@ -153,6 +177,7 @@ class List:
             newlist.add(self[i])
 
         return newlist
+
 
     def reverse(self):
         head = self.head
@@ -178,6 +203,10 @@ if __name__ == '__main__':
     for e in l:
         d.add(e)
 
+    for n in d:
+        print(n)
+
+    print('-------------')
     print(len(d), '|', d)
     print(len(d), '|', d.clone(), 'c')
     d.reverse()
