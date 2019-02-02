@@ -1,15 +1,15 @@
-# Linux (kernel)
+# mod-helloworld
 Example of a basic [Linux][linux] [kernel module][module].
 
 To build and install, execute [`make`][make] and insert the module object file (`.ko`):
 ```
 $ make
-$ sudo insmod linuxmod.ko
+$ sudo insmod helloworld.ko
 ```
 
 Remove module using just the name:
 
-`$ sudo rmmod linuxmod`
+`$ sudo rmmod helloworld`
 
 
 [linux]: https://en.wikipedia.org/wiki/Linux

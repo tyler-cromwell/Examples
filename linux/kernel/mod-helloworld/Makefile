@@ -1,4 +1,4 @@
-obj-m += linuxmod.o
+obj-m += helloworld.o
 
 KDIR = /lib/modules/$(shell uname -r)/build
 
