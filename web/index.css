@@ -1,0 +1,19 @@
+.box {
+    border-style: solid;
+    text-align: center;
+}
+
+
+.bg-blue {
+    background: blue;
+}
+
+
+.bg-white {
+    background: white;
+}
+
+
+.bg-red {
+    background: red;
+}
