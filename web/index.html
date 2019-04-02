@@ -3,20 +3,21 @@
     <head>
         <title>Examples/web/</title>
         <link rel="stylesheet" href="index.css">
-        <script src="index.js"></script>
     </head>
     <body>
         <main>
             <p>Hello, world!</p>
-            <div class="box bg-blue" onclick="box('Box 1')">
+            <div id="Box 1" class="box bg-blue">
                 <p>Box 1 - Click Me!</p>
-                <div class="box bg-white" onclick="box('Box 2')">
+                <div id="Box 2" class="box bg-white">
                     <p>Box 2 - Click Me!</p>
-                    <div class="box bg-red" onclick="box('Box 3')">
+                    <div id="Box 3" class="box bg-red">
                         <p>Box 3 - Click Me!</p>
                     </div>
                 </div>
             </div>
         </main>
+
+        <script type="application/javascript" src="index.js"></script>
     </body>
 </html>

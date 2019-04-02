@@ -1,5 +1,6 @@
 .box {
     border-style: solid;
+    padding: 15px;
     text-align: center;
 }
 
