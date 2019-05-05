@@ -1,0 +1,11 @@
+*.o
+*.pdf
+*.pyc
+*.swp
+*.txt
+
+
+!requirements.txt
+
+
+__pycache__/
