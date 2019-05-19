@@ -1,16 +1,21 @@
 # Algorithms
-Examples of basic searching and sorting algorithms.
+Examples of common algorithms.
 
-Search.py:
+Divide & Conquer:
 - [Binary Search][bs]
+- [Merge Sort][ms]
+
+Dynamic Programming:
+- (see directory)
+
+Graph:
 - [Depth First Search][dfs]
 - [Breadth First Search][dfs]
 
-Sort.py:
+Other:
 - [Bubble Sort][bsr]
 - [Selection Sort][ss]
 - [Insertion Sort][is]
-- [Merge Sort][ms]
 
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
 [bs]: https://en.wikipedia.org/wiki/Binary_search_algorithm
