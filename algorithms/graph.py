@@ -52,6 +52,7 @@ def clique(V, E, k):
     return False, clique
 
 
+# TODO: FIX!
 def depth_first_search(root, traversal=Traversal.INORDER):
     visited = []
 
