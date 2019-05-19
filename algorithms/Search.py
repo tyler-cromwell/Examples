@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import enum
-import random
 import sys
 sys.path.insert(0, '../')
 
@@ -13,24 +12,6 @@ class Traversal(enum.Enum):
     PREORDER = 1
     INORDER = 2
     POSTORDER = 3
-
-
-def binary_search(sl, data):
-    start = 0
-    mid = len(sl) // 2
-    end = len(sl)
-
-    while end != start:
-        if data > sl[mid]:
-            start = mid
-        elif data < sl[mid]:
-            end = mid
-        else:
-            return mid
-
-        mid = ((end - start) // 2) + start
-
-    return -1
 
 
 def depth_first_search(root, traversal=Traversal.INORDER):
@@ -84,18 +65,8 @@ def breadth_first_search(root):
 
 if __name__ == '__main__':
     print('====================')
-    print('Binary Search')
+    print('Depth First Search')
     print('====================')
-
-    s = 10
-    l = [random.randint(0, s) for i in range(s)]
-
-    print('Original:', l)
-    l.sort()
-    print('Sorted:', l)
-
-    for e in l:
-        print('Searching for', e, ':', binary_search(l, e))
 
     root = Node.BinaryNode(5,
         left = Node.BinaryNode(3,
@@ -107,11 +78,6 @@ if __name__ == '__main__':
             right = Node.BinaryNode(9)
         )
     )
-
-    print()
-    print('====================')
-    print('Depth First Search')
-    print('====================')
 
     print('Tree:')
     print(root.data)
