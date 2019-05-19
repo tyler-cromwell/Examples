@@ -15,8 +15,9 @@ Graph:
 
 Other:
 - [Bubble Sort][bsr]
-- [Selection Sort][ss]
 - [Insertion Sort][is]
+- [Selection Sort][ss]
+- Melkman: computes the [Convex Hull][ch] of a [Simple Polygon][sp] in O(n) time.
 
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
 [bs]: https://en.wikipedia.org/wiki/Binary_search_algorithm
@@ -26,3 +27,5 @@ Other:
 [is]: https://en.wikipedia.org/wiki/Insertion_sort
 [ss]: https://en.wikipedia.org/wiki/Selection_sort
 [ms]: https://en.wikipedia.org/wiki/Merge_sort
+[ch]: https://en.wikipedia.org/wiki/Convex_hull
+[sp]: https://en.wikipedia.org/wiki/Simple_polygon
