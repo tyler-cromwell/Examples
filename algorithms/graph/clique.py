@@ -1,6 +1,9 @@
+#!/usr/bin/env python3
+
 import itertools
 
 
+# Graph representation
 N = [
     [1, 2, 3, 5, 7],
     [0, 2, 4, 6],
@@ -12,11 +15,15 @@ N = [
     [0, 3, 5],
     [4, 6]
 ]
+
+# Vertex set
 V = []
+
+# Edge set
 E = []
 
 
-def find_clique(k):
+def clique(V, E, k):
     count = 0
     clique = []
 
@@ -39,6 +46,10 @@ def find_clique(k):
 
 
 if __name__ == '__main__':
+    print('====================')
+    print('Clique')
+    print('====================')
+
     for v in range(len(N)):
         V.append(v)
 
@@ -46,4 +57,4 @@ if __name__ == '__main__':
         for n in N[v]:
             E.append((v, n))
 
-    print(find_clique(k=4))
+    print(clique(V, E, k=4))

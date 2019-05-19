@@ -9,8 +9,9 @@ Dynamic Programming:
 - (see directory)
 
 Graph:
-- [Depth First Search][dfs]
 - [Breadth First Search][dfs]
+- [Clique][clique]
+- [Depth First Search][dfs]
 
 Other:
 - [Bubble Sort][bsr]
@@ -20,6 +21,7 @@ Other:
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
 [bs]: https://en.wikipedia.org/wiki/Binary_search_algorithm
 [bsr]: https://en.wikipedia.org/wiki/Bubble_sort
+[clique]: https://en.wikipedia.org/wiki/Clique_problem
 [dfs]: https://en.wikipedia.org/wiki/Depth-first_search
 [is]: https://en.wikipedia.org/wiki/Insertion_sort
 [ss]: https://en.wikipedia.org/wiki/Selection_sort
