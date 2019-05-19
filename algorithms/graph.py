@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import enum
+import itertools
 import sys
-sys.path.insert(0, '../../')
 
-from _common import Node
+sys.path.append('../../')
 from data_structures import Queue
 
 
@@ -12,6 +12,44 @@ class Traversal(enum.Enum):
     PREORDER = 1
     INORDER = 2
     POSTORDER = 3
+
+
+def breadth_first_search(root):
+    queue = Queue.Queue(root)
+    visited = []
+
+    while len(queue) > 0:
+        node = queue.dequeue()
+
+        if node not in visited:
+            visited.append(node.data)
+
+            for child in node.children():
+                queue.enqueue(child)
+
+    return visited
+
+
+def clique(V, E, k):
+    count = 0
+    clique = []
+
+    for group in list(itertools.combinations(V, k)):
+        edges = list(itertools.combinations(group, 2))
+        n = len(edges)
+
+        for edge in edges:
+            if edge in E:
+                count += 1
+
+        if count == n:
+            clique.append(group)
+            return True, clique
+        else:
+            count = 0
+            clique = []
+
+    return False, clique
 
 
 def depth_first_search(root, traversal=Traversal.INORDER):
@@ -45,36 +83,3 @@ def depth_first_search(root, traversal=Traversal.INORDER):
             visited += depth_first_search(root.right, traversal)
 
     return visited
-
-
-if __name__ == '__main__':
-    print('====================')
-    print('Depth First Search')
-    print('====================')
-
-    root = Node.BinaryNode(5,
-        left = Node.BinaryNode(3,
-            left = Node.BinaryNode(10),
-            right = Node.BinaryNode(2)
-        ),
-        right = Node.BinaryNode(1,
-            left = Node.BinaryNode(7),
-            right = Node.BinaryNode(9)
-        )
-    )
-
-    print('Tree:')
-    print(root.data)
-    print('+', root.left.data)
-    print('+--', root.left.left.data)
-    print('+--', root.left.right.data)
-    print('+', root.right.data)
-    print('+--', root.right.left.data)
-    print('+--', root.right.right.data)
-
-    visited = depth_first_search(root, Traversal.PREORDER)
-    print('Preorder:', visited)
-    visited = depth_first_search(root, Traversal.POSTORDER)
-    print('Postorder:', visited)
-    visited = depth_first_search(root)
-    print('Inorder:', visited)

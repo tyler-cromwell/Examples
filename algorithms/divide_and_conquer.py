@@ -1,6 +1,22 @@
-#!/usr/bin/env python3
-
 import random
+
+
+def binary_search(sl, data):
+    start = 0
+    mid = len(sl) // 2
+    end = len(sl) - 1
+
+    while end >= start:
+        if data > sl[mid]:
+            start = mid+1
+        elif data < sl[mid]:
+            end = mid-1
+        else:
+            return mid
+
+        mid = ((end - start) // 2) + start
+
+    return -1
 
 
 def merge_sort(A):
@@ -29,13 +45,3 @@ def merge_sort(A):
         L = merge_sort(A[:mid])
         R = merge_sort(A[mid:])
         return merge(L, R)
-
-
-if __name__ == '__main__':
-    print('====================')
-    print('Merge Sort')
-    print('====================')
-
-    l = [random.randint(0, 100) for i in range(10)]
-    print('Unordered:\t', l)
-    print('Merge Sort:\t', merge_sort(l))

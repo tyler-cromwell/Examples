@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-import itertools
+import sys
+
+sys.path.append('../')
+import graph
 
 
 # Graph representation
@@ -23,28 +26,6 @@ V = []
 E = []
 
 
-def clique(V, E, k):
-    count = 0
-    clique = []
-
-    for group in list(itertools.combinations(V, k)):
-        edges = list(itertools.combinations(group, 2))
-        n = len(edges)
-
-        for edge in edges:
-            if edge in E:
-                count += 1
-
-        if count == n:
-            clique.append(group)
-            return True, clique
-        else:
-            count = 0
-            clique = []
-
-    return False, clique
-
-
 if __name__ == '__main__':
     print('====================')
     print('Clique')
@@ -57,4 +38,4 @@ if __name__ == '__main__':
         for n in N[v]:
             E.append((v, n))
 
-    print(clique(V, E, k=4))
+    print(graph.clique(V, E, k=4))

@@ -1,5 +1,6 @@
 # Algorithms
 Examples of common algorithms.
+Enter the directory `examples/` to test each one.
 
 Divide & Conquer:
 - [Binary Search][bs]

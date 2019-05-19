@@ -1,26 +1,11 @@
 #!/usr/bin/env python3
 
 import sys
-sys.path.insert(0, '../../')
 
+sys.path.append('../')
+sys.path.append('../../')
 from _common import Node
-from data_structures import Queue
-
-
-def breadth_first_search(root):
-    queue = Queue.Queue(root)
-    visited = []
-
-    while len(queue) > 0:
-        node = queue.dequeue()
-
-        if node not in visited:
-            visited.append(node.data)
-
-            for child in node.children():
-                queue.enqueue(child)
-
-    return visited
+import graph
 
 
 if __name__ == '__main__':
@@ -48,5 +33,5 @@ if __name__ == '__main__':
     print('+--', root.right.left.data)
     print('+--', root.right.right.data)
 
-    visited = breadth_first_search(root)
+    visited = graph.breadth_first_search(root)
     print(visited)
