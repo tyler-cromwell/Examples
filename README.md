@@ -3,6 +3,7 @@ Examples of fundamental algorithms, data structures, systems programming concept
 
 ## Contents
   - `algorithms`: Common algorithms.
+  - `design_patterns`: Common design patterns.
   - `linux`: Linux kernel modules and user-space programs.
   - `make`: Uses of the Make build system for various cases.
   - `multithreading`: Multithreaded programs (using POSIX threads).
