@@ -1,4 +1,4 @@
-# Javascript Event Bubbling
+# Javascript Event Bubbling (Prevention)
 This example is a simple illustration of how to attach events to *nested* elements while preventing those events from ["bubbling"][bubble] up to ancestor elements.
 
 
