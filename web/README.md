@@ -1,5 +1,5 @@
 # Web
-Various examples of [CSS][css], [HTML][html], and [Javascript][js] uses.
+Various examples of [HTML][html], [CSS][css], and [Javascript][js] uses.
 
 
 [css]: https://en.wikipedia.org/wiki/Cascading_Style_Sheets
