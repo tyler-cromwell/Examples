@@ -1,6 +1,6 @@
 # AJAX
 Illustrates how the [AJAX][ajax] technique can be used to asynchronosly retrieve from a server and load it to a page without refreshing it entirely.
-The code in this example is heavily based on [this Mozilla article][article].
+The code in this example is heavily based on [this Mozilla article][article], be sure to download the verse files from the links it provides.
 
 
 ## Testing
