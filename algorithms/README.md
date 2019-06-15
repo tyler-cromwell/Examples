@@ -19,6 +19,7 @@ Other:
 - [Insertion Sort][is]
 - [Selection Sort][ss]
 - Melkman: computes the [Convex Hull][ch] of a [Simple Polygon][sp] in O(n) time.
+- Relative Sort: sorts an array relative to the ordering of another array.
 
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
 [bs]: https://en.wikipedia.org/wiki/Binary_search_algorithm
