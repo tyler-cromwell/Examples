@@ -3,22 +3,22 @@ Examples of common algorithms.
 Enter the directory `examples/` to test each one (except dynamic_programming).
 
 Divide & Conquer:
-- [Binary Search][bs]
-- [Merge Sort][ms]
+- [Binary Search][bs], `O(log(n))`.
+- [Merge Sort][ms], `O(nlog(n))`.
 
 Dynamic Programming:
 - (see directory)
 
 Graph:
-- [Breadth First Search][dfs]
-- [Clique][clique]
-- [Depth First Search][dfs]
+- [Breadth First Search][dfs], `O(V+E)`.
+- [Clique][clique], `O(n^k)` where `k` is the clique size.
+- [Depth First Search][dfs], `O(V+E)`.
 
 Other:
-- [Bubble Sort][bsr]
-- [Insertion Sort][is]
-- [Selection Sort][ss]
-- Melkman: computes the [Convex Hull][ch] of a [Simple Polygon][sp] in O(n) time.
+- [Bubble Sort][bsr], `O(n^2)`.
+- [Insertion Sort][is], `O(n^2)`.
+- [Selection Sort][ss], `O(n^2)`.
+- Melkman: computes the [Convex Hull][ch] of a [Simple Polygon][sp] in `O(n)` time.
 - Relative Sort: sorts an array relative to the ordering of another array.
 
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
