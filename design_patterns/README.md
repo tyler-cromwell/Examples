@@ -1,6 +1,6 @@
 # Design Patterns
 Example implementations of common [design patterns][design].
-Each pattern is broken down into 1 of 3 categories:
+Each pattern is assigned to 1 of 3 categories:
 
   - Behaviorial
   - Creational
