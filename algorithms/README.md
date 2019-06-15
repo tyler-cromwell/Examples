@@ -19,7 +19,7 @@ Other:
 - [Insertion Sort][is], `O(n^2)`.
 - [Selection Sort][ss], `O(n^2)`.
 - Melkman: computes the [Convex Hull][ch] of a [Simple Polygon][sp] in `O(n)` time.
-- Relative Sort: sorts an array relative to the ordering of another array, `O((n^2)log(n))`.
+- Relative Sort: sorts an array relative to the ordering of another array, `O((n*m*log(m))`, where `n` is the length of the first array and `m` is the length of the second array.
 
 
 [bfs]: https://en.wikipedia.org/wiki/Breadth-first_search
