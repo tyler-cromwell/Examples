@@ -7,7 +7,8 @@ Divide & Conquer:
 - [Merge Sort][ms], `O(nlog(n))`.
 
 Dynamic Programming:
-- (see directory)
+- [Longest Common Substring][lcsu]m `O(n*m)`.
+- (see `dynamic_programming_concept`)
 
 Graph:
 - [Breadth First Search][dfs], `O(V+E)`.
@@ -28,6 +29,7 @@ Other:
 [clique]: https://en.wikipedia.org/wiki/Clique_problem
 [dfs]: https://en.wikipedia.org/wiki/Depth-first_search
 [is]: https://en.wikipedia.org/wiki/Insertion_sort
+[lcsu]: https://en.wikipedia.org/wiki/Longest_common_substring_problem
 [ss]: https://en.wikipedia.org/wiki/Selection_sort
 [ms]: https://en.wikipedia.org/wiki/Merge_sort
 [ch]: https://en.wikipedia.org/wiki/Convex_hull
