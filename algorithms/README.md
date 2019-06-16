@@ -7,7 +7,7 @@ Divide & Conquer:
 - [Merge Sort][ms], `O(nlog(n))`.
 
 Dynamic Programming:
-- [Longest Common Substring][lcsu]m `O(n*m)`.
+- [Longest Common Substring][lcsu] `O(n*m)`.
 - (see `dynamic_programming_concept`)
 
 Graph:
