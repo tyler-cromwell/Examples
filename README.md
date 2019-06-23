@@ -6,6 +6,7 @@ Examples of fundamental algorithms, data structures, systems programming concept
   - `algorithms`: Common algorithms.
   - `assembly`: Architecture specific [assembly][asm] examples.
   - `bash`: [Bash][bash]-specific examples.
+  - `c`: [C][c]-specific examples.
   - `c#`: [C#][c#]-specific examples.
   - `data_structures`:  Common data structures.
   - `databases`: Example scripts for different operations on a [database][db].
@@ -24,6 +25,7 @@ Examples of fundamental algorithms, data structures, systems programming concept
 
 [asm]: https://en.wikipedia.org/wiki/Assembly_language
 [bash]: https://en.wikipedia.org/wiki/Bash_(Unix_shell)
+[c]: https://en.wikipedia.org/wiki/C_(programming_language)
 [c#]: https://en.wikipedia.org/wiki/C_Sharp_(programming_language)
 [css]: https://en.wikipedia.org/wiki/Cascading_Style_Sheets
 [db]: https://en.wikipedia.org/wiki/Database
