@@ -2,6 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import ClassCounter from './01_useState/ClassCounter'
+import HookCounter from './01_useState/HookCounter'
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +22,12 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <div className="Separation">
+        <h2>01: Use State</h2>
+        <ClassCounter/>
+        <HookCounter/>
+      </div>
     </div>
   );
 }
