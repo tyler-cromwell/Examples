@@ -24,7 +24,7 @@ function App() {
       </header>
 
       <div className="Separation">
-        <h2>01: Use State</h2>
+        <h2>Hook 1: useState</h2>
         <ClassCounter/>
         <HookCounter/>
       </div>

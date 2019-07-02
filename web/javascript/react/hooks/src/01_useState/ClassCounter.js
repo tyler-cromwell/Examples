@@ -9,16 +9,38 @@ class ClassCounter extends Component {
     }
   }
 
+  resetCount = () => {
+    this.setState({
+      count: 0
+    })
+  }
+
   incrementCount = () => {
     this.setState({
       count: this.state.count + 1
     })
   }
 
+  decrementCount = () => {
+    this.setState({
+      count: this.state.count - 1
+    })
+  }
+
+  incrementCount5 = () => {
+    this.setState({
+      count: this.state.count + 5
+    })
+  }
+
   render() {
     return (
       <div>
-        <button onClick={this.incrementCount}>Class Count {this.state.count}</button>
+        Class Count: {this.state.count}
+        <button onClick={this.resetCount}>Reset</button>
+        <button onClick={this.incrementCount}>Increment</button>
+        <button onClick={this.decrementCount}>Decrement</button>
+        <button onClick={this.incrementCount5}>Increment 5</button>
       </div>
     )
   }
