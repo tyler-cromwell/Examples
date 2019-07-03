@@ -5,7 +5,9 @@ class ClassCounter extends Component {
     super(props)
 
     this.state = {
-      count: 0
+      count: 0,
+      firstName: '',
+      lastName: ''
     }
   }
 
@@ -33,6 +35,18 @@ class ClassCounter extends Component {
     })
   }
 
+  setFirstName = (value) => {
+    this.setState({
+      firstName: value
+    })
+  }
+
+  setLastName = (value) => {
+    this.setState({
+      lastName: value
+    })
+  }
+
   render() {
     return (
       <div>
@@ -41,6 +55,23 @@ class ClassCounter extends Component {
         <button onClick={this.incrementCount}>Increment</button>
         <button onClick={this.decrementCount}>Decrement</button>
         <button onClick={this.incrementCount5}>Increment 5</button>
+
+        <form>
+          <input
+            type='text'
+            value={this.state.firstName}
+            onChange={e => this.setFirstName(e.target.value)}
+          />
+          <input
+            type='text'
+            value={this.state.lastName}
+            onChange={e => this.setLastName(e.target.value)}
+          />
+          <p>
+            Class first name: {this.state.firstName}<br/>
+            Class last name: {this.state.lastName}
+          </p>
+        </form>
       </div>
     )
   }
