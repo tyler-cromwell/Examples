@@ -19,6 +19,7 @@ Other:
 - [Bubble Sort][bsr], `O(n^2)`.
 - [Insertion Sort][is], `O(n^2)`.
 - [Selection Sort][ss], `O(n^2)`.
+- Group: Groups members of a population into n, k-size groups without replacement.
 - Melkman: computes the [Convex Hull][ch] of a [Simple Polygon][sp] in `O(n)` time.
 - Relative Sort: sorts an array relative to the ordering of another array, `O(n*m*log(m))`, where `m` is the length of the first array and `n` is the length of the second array.
 
