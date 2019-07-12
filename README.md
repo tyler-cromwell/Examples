@@ -4,10 +4,6 @@ Examples of fundamental algorithms, data structures, systems programming concept
 
 ## Contents
   - `algorithms`: Common algorithms.
-  - `assembly`: Architecture specific [assembly][asm] examples.
-  - `bash`: [Bash][bash]-specific examples.
-  - `c`: [C][c]-specific examples.
-  - `c#`: [C#][c#]-specific examples.
   - `data_structures`:  Common data structures.
   - `databases`: Example scripts for different operations on a [database][db].
   - `design_patterns`: Common design patterns.
@@ -19,14 +15,10 @@ Examples of fundamental algorithms, data structures, systems programming concept
   - `multithreading`: [Multithreaded][multithread] programs (using [POSIX][posix] threads).
   - `networking`: Programs that communicate over the Internet using [TCP][tcp] and [UDP][udp].
   - `processes`: Process creation and [Inter-process communication][ipc].
-  - `python`: [Python][python]-specific examples.
+  - `programming_languages`: Example functionality specific to various [programming languages][plang].
   - `web`: Web programming with [HTML][html], [CSS][css], and [Javascript][js].
 
 
-[asm]: https://en.wikipedia.org/wiki/Assembly_language
-[bash]: https://en.wikipedia.org/wiki/Bash_(Unix_shell)
-[c]: https://en.wikipedia.org/wiki/C_(programming_language)
-[c#]: https://en.wikipedia.org/wiki/C_Sharp_(programming_language)
 [css]: https://en.wikipedia.org/wiki/Cascading_Style_Sheets
 [db]: https://en.wikipedia.org/wiki/Database
 [docker]: https://en.wikipedia.org/wiki/Docker_(software)a
@@ -38,6 +30,6 @@ Examples of fundamental algorithms, data structures, systems programming concept
 [make]: https://en.wikipedia.org/wiki/Make_(software)
 [multithread]: https://en.wikipedia.org/wiki/Thread_(computing)#Multithreading
 [posix]: https://en.wikipedia.org/wiki/POSIX
-[python]: https://en.wikipedia.org/wiki/Python_(programming_language)
+[plang]: https://en.wikipedia.org/wiki/Programming_language
 [tcp]: https://en.wikipedia.org/wiki/Transmission_Control_Protocol
 [udp]: https://en.wikipedia.org/wiki/User_Datagram_Protocol
