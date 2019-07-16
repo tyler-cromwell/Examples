@@ -1,6 +1,8 @@
 import random
 
-
+"""
+Searches for 'data' in the given 'array'.
+"""
 def binary_search(A, data):
     low = 0
     mid = len(A) // 2
@@ -42,6 +44,9 @@ def binary_search_first(A, number):
     return -1
 
 
+"""
+Sorts the given array 'A'.
+"""
 def merge_sort(A):
     def merge(L, R):
         B = []
@@ -68,3 +73,11 @@ def merge_sort(A):
         L = merge_sort(A[:mid])
         R = merge_sort(A[mid:])
         return merge(L, R)
+
+
+"""
+Function aliases.
+"""
+bs = binary_search
+bsf = binary_search_first
+ms = merge_sort

@@ -1,3 +1,6 @@
+"""
+Returns a Longest Common Subsequence between the given strings.
+"""
 def longest_common_subsequence(s1, s2):
     table = []
     result = []
@@ -42,9 +45,6 @@ def longest_common_subsequence(s1, s2):
                 m -= 1
                 continue
 
-    """
-    Return result.
-    """
     return ''.join(reversed(result))
 
 
@@ -81,7 +81,7 @@ def longest_common_substring(s1, s2):
         i += 1
 
     """
-    Traceback
+    Traceback.
     """
     i = cell[0]
     j = cell[1]
@@ -94,3 +94,10 @@ def longest_common_substring(s1, s2):
         j -= 1
 
     return ''.join(result)
+
+
+"""
+Function aliases.
+"""
+lcsq = longest_common_subsequence
+lcst = longest_common_substring

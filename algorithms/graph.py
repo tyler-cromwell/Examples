@@ -84,3 +84,10 @@ def depth_first_search(root, traversal=Traversal.INORDER):
             visited += depth_first_search(root.right, traversal)
 
     return visited
+
+
+"""
+Function aliases.
+"""
+bfs = breadth_first_search
+dfs = depth_first_search
