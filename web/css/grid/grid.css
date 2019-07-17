@@ -1,0 +1,9 @@
+body {
+    align-items: center;
+    display: grid;
+    grid-area: content;
+    justify-content: center;
+    margin: 0px;
+    min-height: 100vh;
+    padding: 0px;
+}
