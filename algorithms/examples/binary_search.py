@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
+import os
 import random
 import sys
 
-sys.path.append('..')
-import divide_and_conquer as dc
+sys.path.append(os.path.dirname(os.getcwd() +'/'+ sys.argv[0]) +'/'+ os.pardir +'/'+ os.pardir +'/')
+from algorithms import divide_and_conquer as dc
 
 
 if __name__ == '__main__':

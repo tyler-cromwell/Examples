@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
+import os
 import sys
 
-sys.path.append('..')
-import dynamic_programming as dp
+sys.path.append(os.path.dirname(os.getcwd() +'/'+ sys.argv[0]) +'/'+ os.pardir +'/'+ os.pardir +'/')
+from algorithms import dynamic_programming as dp
 
 
 if __name__ == '__main__':
