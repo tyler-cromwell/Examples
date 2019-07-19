@@ -2,8 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import ClassCounter from './01_useState/ClassCounter'
-import HookCounter from './01_useState/HookCounter'
+import { default as ClassCounter01 } from './01_useState/ClassCounter'
+import { default as HookCounter01 } from './01_useState/HookCounter'
 
 function App() {
   return (
@@ -23,10 +23,16 @@ function App() {
         </a>
       </header>
 
-      <div className="Separation">
-        <h2>Hook 1: useState</h2>
-        <ClassCounter/>
-        <HookCounter/>
+      <div className="Content">
+        <div className="Separation">
+          <h2>Hook 1: useState</h2>
+          <ClassCounter01/>
+          <HookCounter01/>
+        </div>
+
+        <div className="Separation">
+          <h2>Hook 2: useEffect</h2>
+        </div>
       </div>
     </div>
   );

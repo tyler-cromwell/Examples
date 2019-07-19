@@ -23,10 +23,14 @@
   color: #61dafb;
 }
 
+.Content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .Separation {
   border-style: solid;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  margin: 0px;
 }
 
 @keyframes App-logo-spin {
