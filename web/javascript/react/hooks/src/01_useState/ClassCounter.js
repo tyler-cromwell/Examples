@@ -7,7 +7,8 @@ class ClassCounter extends Component {
     this.state = {
       count: 0,
       firstName: '',
-      lastName: ''
+      lastName: '',
+      items: []
     }
   }
 
@@ -47,6 +48,16 @@ class ClassCounter extends Component {
     })
   }
 
+  addItem = () => {
+    this.setState({
+      items: [...this.state.items, {
+        id: this.state.items.length,
+        value: Math.floor(Math.random() * 10) + 1
+      }]
+    })
+    console.log(typeof this.state.items)
+  }
+
   render() {
     return (
       <div>
@@ -72,6 +83,13 @@ class ClassCounter extends Component {
             Class last name: {this.state.lastName}
           </p>
         </form>
+
+        <button onClick={this.addItem}>Class: Add number</button>
+        <ul>
+          {this.state.items.map(item => (
+            <li key={item.id}>{item.value}</li>
+          ))}
+        </ul>
       </div>
     )
   }

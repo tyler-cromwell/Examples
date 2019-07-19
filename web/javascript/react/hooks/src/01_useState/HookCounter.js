@@ -4,12 +4,20 @@ function HookCounter() {
   const initialCount = 0
   const [count, setCount] = useState(initialCount)
   const [name, setName] = useState({firstName: '', lastName: ''})
+  const [items, setItems] = useState([])
 
   const increment5f = () => {
     for (let i = 0; i < 5; i++) {
       // Does not update the state: setCount(count+1)
       setCount(count => count + 1)
     }
+  }
+
+  const addItem = () => {
+    setItems([...items, {
+      id: items.length,
+      value: Math.floor(Math.random() * 10) + 1
+    }])
   }
 
   return (
@@ -37,6 +45,13 @@ function HookCounter() {
           Your last name is: {name.lastName}
         </p>
       </form>
+
+      <button onClick={addItem}>Hooks: Add number</button>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>{item.value}</li>
+        ))}
+      </ul>
     </div>
   )
 }
