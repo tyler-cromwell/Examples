@@ -5,6 +5,9 @@ import './App.css';
 import { default as ClassCounter01 } from './01_useState/ClassCounter'
 import { default as HookCounter01 } from './01_useState/HookCounter'
 
+import { default as ClassCounter02 } from './02_useEffect/ClassCounter'
+import { default as HookCounter02 } from './02_useEffect/HookCounter'
+
 function App() {
   return (
     <div className="App">
@@ -32,6 +35,8 @@ function App() {
 
         <div className="Separation">
           <h2>Hook 2: useEffect</h2>
+          <ClassCounter02/>
+          <HookCounter02/>
         </div>
       </div>
     </div>
