@@ -5,20 +5,31 @@ class ClassCounter extends Component {
     super(props)
     this.state = {
       count: 0,
-      name: ''
+      name: '',
+      x: 0,
+      y: 0
     }
   }
 
   componentDidMount() {
     document.title = `Class 02: clicked ${this.state.count} times`
+    window.addEventListener('mousemove', this.logMousePosition)
+    console.log('[Class] Added event listener to: mousemove')
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log('[Class] componentDidUpdate')
     if (prevState.count !== this.state.count) {
-      console.log('[Class] Updating document title...')
       document.title = `Class 02: clicked ${this.state.count} times`
+      console.log('[Class] Updated document title')
     }
+  }
+
+  logMousePosition = (e) => {
+    this.setState({
+      x: e.clientX,
+      y: e.clientY,
+    })
   }
 
   incrementCount = () => {
@@ -39,6 +50,9 @@ class ClassCounter extends Component {
         Class Count: {this.state.count}
         <button onClick={this.incrementCount}>Increment</button>
         <input type="text" value={this.state.name} onChange={this.updateName}/>
+        <div>
+          (x = {this.state.x}, y = {this.state.y})
+        </div>
       </div>
     )
   }
