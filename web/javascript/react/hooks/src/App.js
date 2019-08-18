@@ -5,8 +5,7 @@ import './App.css';
 import { default as ClassCounter01 } from './01_useState/ClassCounter'
 import { default as HookCounter01 } from './01_useState/HookCounter'
 
-import { default as ClassCounter02 } from './02_useEffect/ClassCounter'
-import { default as HookCounter02 } from './02_useEffect/HookCounter'
+import { default as Container02 } from './02_useEffect/Container02'
 
 function App() {
   return (
@@ -35,8 +34,7 @@ function App() {
 
         <div className="Separation">
           <h2>Hook 2: useEffect</h2>
-          <ClassCounter02/>
-          <HookCounter02/>
+          <Container02/>
         </div>
       </div>
     </div>
