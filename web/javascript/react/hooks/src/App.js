@@ -7,6 +7,12 @@ import { default as HookCounter01 } from './01_useState/HookCounter'
 
 import { default as Container02 } from './02_useEffect/Container02'
 
+import { default as RegularComponent03 } from './03_useContext/RegularComponent03'
+import { default as HookComponent03 } from './03_useContext/HookComponent03'
+
+export const UserContext = React.createContext()
+export const ChannelContext = React.createContext()
+
 function App() {
   return (
     <div className="App">
@@ -35,6 +41,16 @@ function App() {
         <div className="Separation">
           <h2>Hook 2: useEffect</h2>
           <Container02/>
+        </div>
+
+        <div className="Separation">
+          <h2>Hook 3: useContext</h2>
+          <UserContext.Provider value={'tyler'}>
+            <ChannelContext.Provider value={'Examples'}>
+              <RegularComponent03/>
+              <HookComponent03/>
+            </ChannelContext.Provider>
+          </UserContext.Provider>
         </div>
       </div>
     </div>
