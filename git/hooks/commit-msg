@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# regex to validate in commit msg
+commit_regex='((\[[A-Za-z0-9]+\]\:.*)|(Merge.*))'
+error_msg="\nAborting commit.\nYour commit message must be of the form: '[feature/bug]: Message' or start with 'Merge'\n"
+
+if ! grep -iqE "$commit_regex" "$1"; then
+    echo "$error_msg" >&2
+    exit 1
+fi
