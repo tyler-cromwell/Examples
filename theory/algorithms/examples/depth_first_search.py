@@ -33,9 +33,5 @@ if __name__ == '__main__':
     print('+--', root.right.left.data)
     print('+--', root.right.right.data)
 
-    visited = graph.depth_first_search(root, graph.Traversal.PREORDER)
-    print('Preorder:', visited)
-    visited = graph.depth_first_search(root, graph.Traversal.POSTORDER)
-    print('Postorder:', visited)
     visited = graph.depth_first_search(root)
     print('Inorder:', visited)

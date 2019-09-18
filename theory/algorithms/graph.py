@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
 
-import enum
 import itertools
 import sys
 
 sys.path.append('../../')
-from data_structures import Queue
-
-
-class Traversal(enum.Enum):
-    PREORDER = 1
-    INORDER = 2
-    POSTORDER = 3
+from data_structures import Queue, Stack
 
 
 def breadth_first_search(root):
@@ -21,8 +14,8 @@ def breadth_first_search(root):
     while len(queue) > 0:
         node = queue.dequeue()
 
-        if node not in visited:
-            visited.append(node.data)
+        if node.data not in visited:
+            visited.append(node.data)   # .data acts as a unique identifier
 
             for child in node.children():
                 queue.enqueue(child)
@@ -52,36 +45,18 @@ def clique(V, E, k):
     return False, clique
 
 
-# TODO: FIX!
-def depth_first_search(root, traversal=Traversal.INORDER):
+def depth_first_search(root):
+    stack = Stack.Stack(data=root)
     visited = []
 
-    if traversal == Traversal.PREORDER:
-        visited.append(root.data)
+    while len(stack) > 0:
+        node = stack.pop()
 
-        if root.left is not None:
-            visited += depth_first_search(root.left, traversal)
- 
-        if root.right is not None:
-            visited += depth_first_search(root.right, traversal)
+        if node.data not in visited:
+            visited.append(node.data)   # .data acts as a unique identifier
 
-    elif traversal == Traversal.POSTORDER:
-        if root.left is not None:
-            visited += depth_first_search(root.left, traversal)
- 
-        if root.right is not None:
-            visited += depth_first_search(root.right, traversal)
-
-        visited.append(root.data)
-
-    else:
-        if root.left is not None:
-            visited += depth_first_search(root.left, traversal)
-
-        visited.append(root.data)
-
-        if root.right is not None:
-            visited += depth_first_search(root.right, traversal)
+            for child in node.children():
+                stack.push(child)
 
     return visited
 
