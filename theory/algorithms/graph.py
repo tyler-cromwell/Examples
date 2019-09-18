@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import itertools
+import os
 import sys
 
-sys.path.append('../../')
+sys.path.append(os.path.dirname(os.getcwd() +'/'+ sys.argv[0]) +'/'+ os.pardir +'/')
 from data_structures import Queue, Stack
 
 
