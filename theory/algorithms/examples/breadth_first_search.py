@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
+import os
 import sys
 
-sys.path.append('../')
-sys.path.append('../../')
+sys.path.append(os.path.dirname(os.getcwd() +'/'+ sys.argv[0]) +'/'+ os.pardir +'/'+ os.pardir +'/')
 from _common import Node
-import graph
+from algorithms import graph
 
 
 if __name__ == '__main__':
