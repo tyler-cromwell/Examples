@@ -33,7 +33,7 @@ class DoubleNode:
         self.next.previous = self
 
 
-class TreeNode:
+class GraphNode:
     __slots__ = ('data', 'neighbors')
 
     def __init__(self, data, neighbors=[]):
