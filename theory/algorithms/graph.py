@@ -5,23 +5,38 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.getcwd() +'/'+ sys.argv[0]) +'/'+ os.pardir +'/')
-from data_structures import Queue, Stack
+from data_structures.Queue import Queue
+from data_structures.Stack import Stack
 
 
-def breadth_first_search(root):
-    queue = Queue.Queue(root)
+def breadth_first_search(start, goal):
+    queue = Queue(start)
     visited = []
+    found = None
 
     while len(queue) > 0:
         node = queue.dequeue()
 
-        if node.data not in visited:
-            visited.append(node.data)   # .data acts as a unique identifier
+        if node.data is goal:
+            found = node
+            break
 
-            for child in node.children():
-                queue.enqueue(child)
+        if node not in visited:
+            visited.append(node)
 
-    return visited
+            for neighbor in node.neighbors:
+                neighbor.previous = node
+                queue.enqueue(neighbor)
+
+    if found is not None:
+        path = []
+        while node.previous is not None:
+            path.insert(0, node)
+            node = node.previous
+        path.insert(0, start)
+        return path
+    else:
+        return None
 
 
 def clique(V, E, k):
@@ -47,7 +62,7 @@ def clique(V, E, k):
 
 
 def depth_first_search(root):
-    stack = Stack.Stack(data=root)
+    stack = Stack(data=root)
     visited = []
 
     while len(stack) > 0:

@@ -34,10 +34,11 @@ class DoubleNode:
 
 
 class GraphNode:
-    __slots__ = ('data', 'neighbors')
+    __slots__ = ('data', 'previous', 'neighbors')
 
     def __init__(self, data, neighbors=[]):
         self.data = data
+        self.previous = None
         self.neighbors = neighbors
 
     def __str__(self):
