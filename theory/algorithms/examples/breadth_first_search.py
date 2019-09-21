@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.getcwd() +'/'+ sys.argv[0]) +'/'+ os.pardir +'/'+ os.pardir +'/')
-from _common import Node
+from data_structures.node import BinaryNode
 from algorithms import graph
 
 
@@ -13,14 +13,14 @@ if __name__ == '__main__':
     print('Breadth First Search')
     print('====================')
 
-    root = Node.BinaryNode(5,
-        left = Node.BinaryNode(3,
-            left = Node.BinaryNode(10),
-            right = Node.BinaryNode(2)
+    root = BinaryNode(5,
+        left = BinaryNode(3,
+            left = BinaryNode(10),
+            right = BinaryNode(2)
         ),
-        right = Node.BinaryNode(1,
-            left = Node.BinaryNode(7),
-            right = Node.BinaryNode(9)
+        right = BinaryNode(1,
+            left = BinaryNode(7),
+            right = BinaryNode(9)
         )
     )
 

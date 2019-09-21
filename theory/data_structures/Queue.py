@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.insert(0, '../')
-
-from _common import Node
-from data_structures import List
+from .List import List
+from .node import DoubleNode
 
 
-class QueueNode(Node.DoubleNode):
+class QueueNode(DoubleNode):
     __slots__ = ('previous', 'data', 'next')
 
     def __str__(self):
@@ -18,7 +15,7 @@ class Queue:
     __slots__ = ('list')
 
     def __init__(self, data=None):
-        self.list = List.List(data=data, node_type=QueueNode)
+        self.list = List(data=data, node_type=QueueNode)
 
     def __str__(self):
         return str(self.list)

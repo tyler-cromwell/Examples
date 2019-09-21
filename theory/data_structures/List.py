@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.insert(0, '../')
-
-from _common import Node
+from .node import DoubleNode
 
 
-class ListNode(Node.DoubleNode):
+class ListNode(DoubleNode):
     __slots__ = ('previous', 'data', 'next')
 
     def __str__(self):
