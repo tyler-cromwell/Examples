@@ -24,7 +24,7 @@ def breadth_first_search(start, goal):
         if node not in visited:
             visited.append(node)
 
-            for neighbor in node.neighbors:
+            for cost, neighbor in node.neighbors:
                 neighbor.previous = node
                 queue.enqueue(neighbor)
 
@@ -76,7 +76,7 @@ def depth_first_search(start, goal):
         if node not in visited:
             visited.append(node.data)
 
-            for neighbor in node.neighbors:
+            for cost, neighbor in node.neighbors:
                 neighbor.previous = node
                 stack.push(neighbor)
 

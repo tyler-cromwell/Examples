@@ -10,7 +10,7 @@ from algorithms import graph
 
 if __name__ == '__main__':
     print('====================')
-    print('Breadth First Search')
+    print('Depth First Search')
     print('====================')
 
     node1 = GraphNode('Arad')
@@ -23,12 +23,12 @@ if __name__ == '__main__':
     node8 = GraphNode('Mehadia')
     node9 = GraphNode('Rimnicu Vilcea')
 
-    node5.neighbors = [node7]
-    node6.neighbors = [node8]
-    node3.neighbors = [node5]
-    node7.neighbors = [node2, node9]
-    node4.neighbors = [node6]
-    node1.neighbors = [node3, node7, node4]
+    node5.neighbors = [(151, node7)]
+    node6.neighbors = [(70, node8)]
+    node3.neighbors = [(71, node5)]
+    node7.neighbors = [(99, node2), (80, node9)]
+    node4.neighbors = [(111, node6)]
+    node1.neighbors = [(75, node3), (140, node7), (118, node4)]
 
-    path = graph.depth_first_search(node1, 'Rimnicu Vilcea')
+    path = graph.depth_first_search(node1, node9.data)
     print([node.data for node in path])
