@@ -74,7 +74,7 @@ def depth_first_search(start, goal):
             break
 
         if node not in visited:
-            visited.append(node.data)   # .data acts as a unique identifier
+            visited.append(node.data)
 
             for neighbor in node.neighbors:
                 neighbor.previous = node
