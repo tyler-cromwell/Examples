@@ -30,5 +30,5 @@ if __name__ == '__main__':
     node4.neighbors = [node6]
     node1.neighbors = [node3, node7, node4]
 
-    path = graph.breadth_first_search(node1, 'Mehadia')
+    path = graph.breadth_first_search(node1, 'Rimnicu Vilcea')
     print([node.data for node in path])

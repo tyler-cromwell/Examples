@@ -61,20 +61,34 @@ def clique(V, E, k):
     return False, clique
 
 
-def depth_first_search(root):
-    stack = Stack(data=root)
+def depth_first_search(start, goal):
+    stack = Stack(start)
     visited = []
+    found = None
 
     while len(stack) > 0:
         node = stack.pop()
 
-        if node.data not in visited:
+        if node.data is goal:
+            found = node
+            break
+
+        if node not in visited:
             visited.append(node.data)   # .data acts as a unique identifier
 
-            for child in node.children():
-                stack.push(child)
+            for neighbor in node.neighbors:
+                neighbor.previous = node
+                stack.push(neighbor)
 
-    return visited
+    if found is not None:
+        path = []
+        while node.previous is not None:
+            path.insert(0, node)
+            node = node.previous
+        path.insert(0, start)
+        return path
+    else:
+        return None
 
 
 """
