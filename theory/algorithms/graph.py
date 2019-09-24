@@ -9,34 +9,38 @@ from data_structures.Queue import Queue
 from data_structures.Stack import Stack
 
 
-def breadth_first_search(start, goal):
-    queue = Queue(start)
-    visited = []
-    found = None
+def breadth_first_search(start):
+    queue = Queue((
+        start,
+        start.previous,
+        start.cost,
+        start.total
+    ))
+    visited = {}
 
     while len(queue) > 0:
-        node = queue.dequeue()
-
-        if node.data is goal:
-            found = node
-            break
+        node, previous, single, total = queue.dequeue()
 
         if node not in visited:
-            visited.append(node)
+            visited[node] = total
 
-            for cost, neighbor in node.neighbors:
+            for neighbor, cost in node.edges:
                 neighbor.previous = node
-                queue.enqueue(neighbor)
+                neighbor.cost = cost
+                neighbor.total = total + neighbor.cost
+                queue.enqueue((
+                    neighbor,
+                    neighbor.previous,
+                    neighbor.cost,
+                    neighbor.total
+                ))
+        elif total < visited[node]:
+            node.previous = previous
+            node.cost = single
+            node.total = total + node.cost
+            visited[node] = total
 
-    if found is not None:
-        path = []
-        while node.previous is not None:
-            path.insert(0, node)
-            node = node.previous
-        path.insert(0, start)
-        return path
-    else:
-        return None
+    return visited
 
 
 def clique(V, E, k):
@@ -61,34 +65,38 @@ def clique(V, E, k):
     return False, clique
 
 
-def depth_first_search(start, goal):
-    stack = Stack(start)
-    visited = []
-    found = None
+def depth_first_search(start):
+    stack = Stack((
+        start,
+        start.previous,
+        start.cost,
+        start.total
+    ))
+    visited = {}
 
     while len(stack) > 0:
-        node = stack.pop()
-
-        if node.data is goal:
-            found = node
-            break
+        node, previous, single, total = stack.pop()
 
         if node not in visited:
-            visited.append(node.data)
+            visited[node] = total
 
-            for cost, neighbor in node.neighbors:
+            for neighbor, cost in node.edges:
                 neighbor.previous = node
-                stack.push(neighbor)
+                neighbor.cost = cost
+                neighbor.total = total + neighbor.cost
+                stack.push((
+                    neighbor,
+                    neighbor.previous,
+                    neighbor.cost,
+                    neighbor.total
+                ))
+        elif total < visited[node]:
+            node.previous = previous
+            node.cost = single
+            node.total = total + node.cost
+            visited[node] = total
 
-    if found is not None:
-        path = []
-        while node.previous is not None:
-            path.insert(0, node)
-            node = node.previous
-        path.insert(0, start)
-        return path
-    else:
-        return None
+    return visited
 
 
 """
