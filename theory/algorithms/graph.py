@@ -22,17 +22,17 @@ def breadth_first_search(start):
         node, previous, single, total = queue.dequeue()
 
         if node not in visited:
+            node.previous = node
+            node.cost = single
+            node.total = total + single
             visited[node] = total
 
             for neighbor, cost in node.edges:
-                neighbor.previous = node
-                neighbor.cost = cost
-                neighbor.total = total + neighbor.cost
                 queue.enqueue((
                     neighbor,
-                    neighbor.previous,
-                    neighbor.cost,
-                    neighbor.total
+                    node,
+                    cost,
+                    total + cost
                 ))
         elif total < visited[node]:
             node.previous = previous
