@@ -34,7 +34,7 @@ class DoubleNode:
 
 
 class GraphNode:
-    __slots__ = ('data', 'previous', 'cost', 'total', 'edges')
+    __slots__ = ('data', 'previous', 'cost', 'total', 'edges', 'id')
 
     def __init__(self, data, edges=[]):
         self.data = data
@@ -42,9 +42,13 @@ class GraphNode:
         self.cost = 0           # Step cost to this node along shortest path
         self.total = 0          # Total cost to this node along shortest path
         self.edges = edges
+        self.id = self
 
     def __str__(self):
         return '{}'.format(self.data)
+
+    def expand_neighbors(self):
+        return self.edges
 
 
 class BinaryNode:

@@ -9,7 +9,7 @@ from data_structures.Queue import Queue
 from data_structures.Stack import Stack
 
 
-def breadth_first_search(start):
+def breadth_first_search(start, goals=[]):
     queue = Queue((
         start,
         start.previous,
@@ -17,30 +17,35 @@ def breadth_first_search(start):
         start.total
     ))
     visited = {}
+    result = None
 
     while len(queue) > 0:
         node, previous, single, total = queue.dequeue()
+        key = node.id
 
-        if node not in visited:
-            node.previous = node
+        if key not in visited:
+            node.previous = previous
             node.cost = single
-            node.total = total + single
-            visited[node] = total
+            node.total = total
+            visited[key] = total
 
-            for neighbor, cost in node.edges:
+            if key in goals:
+                result = node
+
+            for neighbor, cost in node.expand_neighbors():
                 queue.enqueue((
                     neighbor,
                     node,
                     cost,
                     total + cost
                 ))
-        elif total < visited[node]:
+        elif total < visited[key]:
             node.previous = previous
             node.cost = single
-            node.total = total + node.cost
-            visited[node] = total
+            node.total = total
+            visited[key] = total
 
-    return visited
+    return result
 
 
 def clique(V, E, k):
