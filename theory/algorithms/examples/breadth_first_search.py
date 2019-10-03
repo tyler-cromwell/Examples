@@ -43,7 +43,8 @@ if __name__ == '__main__':
     node7.edges = [(node5, 151), (node1, 140), (node2, 99), (node8, 80)]
     node8.edges = [(node7, 80)]
 
-    goals = [node6.id]
-    solution = graph.breadth_first_search(node7, goals=goals)
-    path = construct_path(node7, solution)
-    print('Path: {},'.format(solution.total), ' -> '.join([str(node) for node in path]))
+    goals = [node1.id, node2.id, node3.id, node4.id, node5.id, node6.id, node7.id, node8.id]
+    for goal in goals:
+        solution = graph.breadth_first_search(node7, goals=[goal])
+        path = construct_path(node7, solution)
+        print('Path: {},'.format(solution.total), ' -> '.join([str(node) for node in path]))

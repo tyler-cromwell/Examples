@@ -23,7 +23,7 @@ def breadth_first_search(start, goals=[]):
         node, previous, single, total = queue.dequeue()
         key = node.id
 
-        if key not in visited:
+        if key not in visited or total < visited[key]:
             node.previous = previous
             node.cost = single
             node.total = total
@@ -39,11 +39,6 @@ def breadth_first_search(start, goals=[]):
                     cost,
                     total + cost
                 ))
-        elif total < visited[key]:
-            node.previous = previous
-            node.cost = single
-            node.total = total
-            visited[key] = total
 
     return result
 
