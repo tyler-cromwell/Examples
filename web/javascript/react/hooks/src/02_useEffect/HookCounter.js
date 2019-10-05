@@ -37,7 +37,7 @@ function HookCounter() {
     <Fragment>
       Hook Count: {count}
       <button onClick={() => setCount(count+1)}>Increment</button>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Open the developer console"/>
       <div>
         (x = {x}, y = {y})
       </div>
