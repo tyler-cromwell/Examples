@@ -58,7 +58,7 @@ class ClassCounter extends Component {
       <Fragment>
         Class Count: {this.state.count}
         <button onClick={this.incrementCount}>Increment</button>
-        <input type="text" value={this.state.name} onChange={this.updateName} placeholder="Open the developer tools"/>
+        <input type="text" value={this.state.name} onChange={this.updateName} placeholder="Open the developer console"/>
         <div>
           (x = {this.state.x}, y = {this.state.y})
         </div>
