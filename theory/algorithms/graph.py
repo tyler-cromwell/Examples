@@ -65,7 +65,7 @@ def clique(V, E, k):
     return False, clique
 
 
-def depth_first_search(start):
+def depth_first_search(start, goals=[]):
     stack = Stack((
         start,
         start.previous,
@@ -73,30 +73,30 @@ def depth_first_search(start):
         start.total
     ))
     visited = {}
+    result = None
 
     while len(stack) > 0:
         node, previous, single, total = stack.pop()
+        key = node.id
 
-        if node not in visited:
-            visited[node] = total
-
-            for neighbor, cost in node.edges:
-                neighbor.previous = node
-                neighbor.cost = cost
-                neighbor.total = total + neighbor.cost
-                stack.push((
-                    neighbor,
-                    neighbor.previous,
-                    neighbor.cost,
-                    neighbor.total
-                ))
-        elif total < visited[node]:
+        if key not in visited or total < visited[key]:
             node.previous = previous
             node.cost = single
-            node.total = total + node.cost
-            visited[node] = total
+            node.total = total
+            visited[key] = total
 
-    return visited
+            if key in goals:
+                result = node
+
+            for neighbor, cost in node.expand_neighbors():
+                stack.push((
+                    neighbor,
+                    node,
+                    cost,
+                    total + cost
+                ))
+
+    return result
 
 
 """

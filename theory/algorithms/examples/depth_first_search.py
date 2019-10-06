@@ -8,6 +8,18 @@ from data_structures.node import GraphNode
 from algorithms import graph
 
 
+def construct_path(start, end):
+    path = []
+    node = end
+
+    while node.previous is not None:
+        path.insert(0, node)
+        node = node.previous
+    path.insert(0, start)
+
+    return path
+
+
 if __name__ == '__main__':
     print('====================')
     print('Depth First Search')
@@ -31,5 +43,8 @@ if __name__ == '__main__':
     node7.edges = [(node5, 151), (node1, 140), (node2, 99), (node8, 80)]
     node8.edges = [(node7, 80)]
 
-    path = graph.depth_first_search(node7)
-    print([(node.data, path[node]) for node in path])
+    goals = [node1.id, node2.id, node3.id, node4.id, node5.id, node6.id, node7.id, node8.id]
+    for goal in goals:
+        solution = graph.depth_first_search(node7, goals=[goal])
+        path = construct_path(node7, solution)
+        print('Path: {},'.format(solution.total), ' -> '.join([str(node) for node in path]))
