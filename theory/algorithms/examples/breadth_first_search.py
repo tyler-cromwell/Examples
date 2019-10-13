@@ -47,4 +47,4 @@ if __name__ == '__main__':
     for goal in goals:
         solution = graph.breadth_first_search(node7, goals=[goal])
         path = construct_path(node7, solution)
-        print('Path: {},'.format(solution.total), ' -> '.join([str(node) for node in path]))
+        print('Path:', ' -> '.join([str(node) for node in path]))
