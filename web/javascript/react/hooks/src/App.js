@@ -10,8 +10,12 @@ import { default as Container02 } from './02_useEffect/Container02'
 import { default as RegularComponent03 } from './03_useContext/RegularComponent03'
 import { default as HookComponent03 } from './03_useContext/HookComponent03'
 
+import { default as StateCounter } from './04_useReducer/StateCounter'
+import { default as ReducerCounter } from './04_useReducer/ReducerCounter'
+
 export const UserContext = React.createContext()
 export const ChannelContext = React.createContext()
+
 
 function App() {
   return (
@@ -51,6 +55,12 @@ function App() {
               <HookComponent03/>
             </ChannelContext.Provider>
           </UserContext.Provider>
+        </div>
+
+        <div className="Separation">
+            <h2>Hook 4: useReducer</h2>
+            <StateCounter/>
+            <ReducerCounter/>
         </div>
       </div>
     </div>
