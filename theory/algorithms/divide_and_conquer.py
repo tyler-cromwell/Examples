@@ -76,8 +76,42 @@ def merge_sort(A):
 
 
 """
+Sorts the given array 'A'.
+"""
+def quick_sort(A):
+    def quick_sort_inner(A, l, h):
+        n = len(A)
+
+        if (n == 1) or (n == 2 and A[0] <= A[1]):
+            return A
+        elif n == 2 and A[0] > A[1]:
+            return [A[1], A[0]]
+
+        if l < h:
+            pivot = A[h]
+            i = l
+
+            for j in range(l, h):
+                if A[j] < pivot:
+                    temp = A[j]
+                    A[j] = A[i]
+                    A[i] = temp
+                    i += 1
+
+            temp = A[h]
+            A[h] = A[i]
+            A[i] = temp
+
+            quick_sort_inner(A, l, i-1)
+            quick_sort_inner(A, i+1, h)
+
+    return quick_sort_inner(A, 0, len(A)-1)
+
+
+"""
 Function aliases.
 """
 bs = binary_search
 bsf = binary_search_first
 ms = merge_sort
+qs = quick_sort
