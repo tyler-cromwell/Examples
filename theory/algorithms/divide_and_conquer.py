@@ -82,11 +82,6 @@ def quick_sort(A):
     def quick_sort_inner(A, l, h):
         n = len(A)
 
-        if (n == 1) or (n == 2 and A[0] <= A[1]):
-            return A
-        elif n == 2 and A[0] > A[1]:
-            return [A[1], A[0]]
-
         if l < h:
             pivot = A[h]
             i = l
