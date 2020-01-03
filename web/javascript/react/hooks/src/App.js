@@ -13,6 +13,8 @@ import { default as HookComponent03 } from './03_useContext/HookComponent03'
 import { default as StateCounter } from './04_useReducer/StateCounter'
 import { default as ReducerCounter } from './04_useReducer/ReducerCounter'
 
+import { default as ParentComponent } from './05_useCallback/ParentComponent'
+
 export const UserContext = React.createContext()
 export const ChannelContext = React.createContext()
 
@@ -58,9 +60,14 @@ function App() {
         </div>
 
         <div className="Separation">
-            <h2>Hook 4: useReducer</h2>
-            <StateCounter/>
-            <ReducerCounter/>
+          <h2>Hook 4: useReducer</h2>
+          <StateCounter/>
+          <ReducerCounter/>
+        </div>
+
+        <div className="Seperation">
+          <h2>Hook 5: useCallback</h2>
+          <ParentComponent/>
         </div>
       </div>
     </div>
