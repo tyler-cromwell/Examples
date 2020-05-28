@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  dockbase:
+    build: ./dockbase
+    image: dockbase:1.0
+  docktest:
+    build: ./docktest
+    image: docktest:1.0
+    depends_on:
+      - dockbase
