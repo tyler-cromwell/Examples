@@ -8,10 +8,12 @@
         }
     },
     "addons": [
-        "heroku-postgres",
         {
-            "plan": "hobby-dev",
-            "as": "DATABASE"
+            "plan": "heroku-postgresql:hobby-dev",
+            "as": "DATABASE",
+            "options": {
+                "version": 13
+            }
         }
     ],
     "buildpacks": {
