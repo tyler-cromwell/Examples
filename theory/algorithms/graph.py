@@ -102,7 +102,130 @@ def dijkstras(start):
 
 
 """
+class GraphEdge:
+    def __init__(self, n1, n2, weight):
+        self._node1 = n1
+        self._node2 = n2
+        self._weight = weight
+
+class GraphNode:
+    def __init__(self, label, neighbors=set()):
+        self._label = label
+        self._neighbors = neighbors
+
+    def getLabel(self):
+        return self._label
+
+    def getNeighbors(self):
+        return self._neighbors
+
+    def getNeighborsLabels(self):
+        return [neighbor.getLabel() for neighbor in self._neighbors]
+"""
+
+
+def depth_first_search2(indent, graph, visited, node, ordering=None):
+    visited.add(node)
+    #print(indent, node, ' -> ', graph[node], sep='')
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            #print(indent, 'Visiting ', neighbor, sep='')
+            depth_first_search2(indent+'    ', graph, visited, neighbor)
+        #else:
+        #    print(indent, 'Already visited ', neighbor, sep='')
+
+    if ordering is not None:
+        ordering.append(node)
+
+
+import heapq
+"""
+graph = {
+    'A': {'B': 10, 'C': 3},
+    'B': {'A': 10, 'C': 4, 'D': 2},
+    'C': {'A': 3, 'B': 4, 'D': 8, 'E': 2},
+    'D': {'B': 2, 'C': 8, 'E': 5},
+    'E': {'D': 5, 'C': 2}
+}
+"""
+
+
+def dijkstras2(graph, start):
+    shortest = {n: float('inf') for n in graph.keys()}
+    edgeQueue = []
+    heapq.heappush(edgeQueue, (0, start))
+
+    while len(edgeQueue):
+        totalCost, node = heapq.heappop(edgeQueue)
+        if totalCost >= shortest[node]:
+            continue
+
+        shortest[node] = totalCost
+        for neighbor, cost in graph[node].items():
+            tentativeCost = totalCost+cost
+            if tentativeCost < shortest[neighbor]:
+                #print('Visiting', neighbor, tentativeCost, node)
+                heapq.heappush(edgeQueue, (totalCost + cost, neighbor))
+
+    return shortest
+
+#print(dijkstras(graph, 'A'))
+
+
+def prims(graph, start):
+    heap = []
+    mst = set()
+    visited = {start}
+    for neighbor, weight in graph[start].items():
+        heapq.heappush(heap, (weight, start, neighbor))
+
+    #print(heap)
+    while len(visited) < len(graph):
+        weight, src, dst = heapq.heappop(heap)
+        if dst in visited:
+            continue
+        visited.add(dst)
+        mst.add((weight, src, dst))
+        for neighbor, weight in graph[dst].items():
+            if neighbor not in visited:
+                heapq.heappush(heap, (weight, dst, neighbor))
+
+    #print(visited)
+    return mst
+#print(prims(graph, 'A'))
+
+
+"""
+graphDirected = {
+    'A': {'B': 10, 'C': 3},
+    'B': {'D': 2},
+    'C': {'E': 2},
+    'D': {'F': 1},
+    'E': {'F': 1},
+    'F': {},
+    'G': {'H': 1},
+    'H': {}
+}
+"""
+
+
+def topological_sort(graph):
+    ordering = []
+    visited = set()
+
+    for node in graph:
+        depth_first_search2('', graph, visited, node, ordering=ordering)
+
+    ordering.reverse()
+    return ordering
+
+#print(graphDirected)
+#print(topological_sort(graphDirected))
+
+
+"""
 Function aliases.
 """
 bfs = breadth_first_search
 dfs = depth_first_search
+df2 = depth_first_search2
