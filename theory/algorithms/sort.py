@@ -49,9 +49,37 @@ def insertion_sort(data):
     return array
 
 
+def _partition(array, start, end):
+    pivot = end
+    i = start
+
+    print('pivot = {} = array[{}]'.format(array[pivot], end))
+    for j in range(start, end):
+        if array[j] <= array[pivot]:
+            print('swap', array[i], array[j])
+            array[i], array[j] = array[j], array[i]
+            i += 1
+
+    print('swap', array[i], array[pivot])
+    array[i], array[pivot] = array[pivot], array[i]
+    print(i, array)
+    return i
+
+def _quicksort(array, start, end):
+    if start < end:
+        print('recursion')
+        pivot = _partition(array, start, end)
+        _quicksort(array, start, pivot - 1)
+        _quicksort(array, pivot + 1, end)
+
+def quicksort(array):
+    _quicksort(array, 0, len(array)-1)
+
+
 if __name__ == '__main__':
     l = [5, 2, 3, 6, 1, 0, 4]
     print('Unordered:\t', l)
     print('Bubble Sort:\t', bubble_sort(l))
     print('Selection Sort:\t', selection_sort(l))
     print('Insertion Sort:\t', insertion_sort(l))
+    print('Quick Sort:\t', quicksort(l))
