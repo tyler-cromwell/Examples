@@ -124,18 +124,57 @@ class GraphNode:
 """
 
 
-def depth_first_search2(indent, graph, visited, node, ordering=None):
+def depth_first_search_recursive(indent, graph, visited, node, ordering=None):
     visited.add(node)
     #print(indent, node, ' -> ', graph[node], sep='')
     for neighbor in graph[node]:
         if neighbor not in visited:
             #print(indent, 'Visiting ', neighbor, sep='')
-            depth_first_search2(indent+'    ', graph, visited, neighbor)
+            depth_first_search_recursive(indent+'    ', graph, visited, neighbor)
         #else:
         #    print(indent, 'Already visited ', neighbor, sep='')
 
     if ordering is not None:
         ordering.append(node)
+
+
+def depth_first_search_iterative(indent, graph, visited, node, ordering=None):
+    stack = [node]
+
+    while stack:
+        currentNode = stack.pop()
+        if currentNode in visited:
+            continue
+        visited.add(currentNode)
+        #print('Visiting ', currentNode, ' -> ', graph[currentNode], sep='')
+        if ordering is not None:
+            ordering.append(currentNode)
+
+        for neighbor in list(graph[currentNode])[::-1]:
+            if neighbor not in visited:
+                #print(indent, 'Stacking ', neighbor, sep='')
+                stack.append(neighbor)
+            #else:
+            #    print(indent, 'Already visited ', neighbor, sep='')
+
+
+def breadth_first_search_iterative(indent, graph, visited, node):
+    queue = [node]
+
+    while queue:
+        currentNode = queue.pop(0)
+        if currentNode in visited:
+            print('Skipping ', currentNode, sep='')
+            continue
+        visited.add(currentNode)
+        #print('Visiting ', currentNode, ' -> ', graph[currentNode], sep='')
+
+        for neighbor in graph[currentNode]:
+            if neighbor not in visited:
+                #print(indent, 'Queueing ', neighbor, sep='')
+                queue.append(neighbor)
+            #else:
+            #    print(indent, 'Already visited ', neighbor, sep='')
 
 
 import heapq
@@ -214,7 +253,7 @@ def topological_sort(graph):
     visited = set()
 
     for node in graph:
-        depth_first_search2('', graph, visited, node, ordering=ordering)
+        depth_first_search_recursive('', graph, visited, node, ordering=ordering)
 
     ordering.reverse()
     return ordering
@@ -228,4 +267,6 @@ Function aliases.
 """
 bfs = breadth_first_search
 dfs = depth_first_search
-df2 = depth_first_search2
+dfs2 = depth_first_search_recursive
+dfs3 = depth_first_search_iterative
+bfs2 = breadth_first_search_iterative
